@@ -4,12 +4,10 @@ class MyUtils {
     
     static Book seqSearch(String ISBN,Book[] arrayOfBooks){
         
-        boolean flag = false;
         int index = -1;
         
         for(int i = 0; i<arrayOfBooks.length; i++){
-            if(arrayOfBooks[i].getISBN() == ISBN){
-                flag = true;
+            if(arrayOfBooks[i].getISBN().equals(ISBN)){
                 index = i;
                 break;
             }

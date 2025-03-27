@@ -121,6 +121,7 @@ public class OOP_assign1 {
                     break;
                 default:
                     System.out.println("Λάθος επιλογή! Προσπαθήστε ξανά.");
+                    break;
             }
 
         } while (choice != 5);
