@@ -31,6 +31,57 @@ public class OOP_assign1 {
                     break;
                 case 2:
                     System.out.println("2 selected - Αναζήτηση βιβλίου");
+                    do{
+                        System.out.println("\tΕπιλογή Πεδίου Αναζήτησης\n"
+                                        + "1. ISBN\n"
+                                        + "2.Έτος κυκλοφορίας\n"
+                                        + "3.Επιστροφή στην Αρχική Λίστα Επιλογών\n\n"
+                                        + "  Δώστε Επιλογή(1-3):");
+                        choice = UserInput.getInteger();
+                        switch(choice){
+                            case 1:
+                                do{
+                                    System.out.println("\tΕπιλογή Μεθόδου Αναζήτησης\n"
+                                                    + "1. Σειριακή Αναζήτηση\n"
+                                                    + "2. Δυαδική Αναζήτηση\n"
+                                                    + "3. Επιστροφή στην Επιλογή Πεδίου Αναζήτησης\n"
+                                                    + "\nΔώστε Επιλογή (1-3):");
+                                    choice = UserInput.getInteger();
+                                }while(choice !=3);
+                                    switch(choice){
+                                        case 1:
+                                            System.out.println("1 επιλέχτηκε - Σειριακή Αναζήτηση");
+                                            MyUtils.seqSearch("asd",arrayOfBooks);
+                                            break;
+                                        case 2:
+                                            System.out.println("2 επιλέχτηκε - Δυαδική Αναζήτηση");
+                                        case 3:
+                                            System.out.println("Επιστροφή πίσω");
+                                            break;
+                                        default:
+                                            System.out.println("Κάτι πήγε λάθος!");
+                                            break;
+                                    }
+                                break;
+                            case 2:
+                                do{
+                                    System.out.println("\tΕπιλογή Μεθόδου Αναζήτησης\n"
+                                                    + "1. Σειριακή Αναζήτηση\n"
+                                                    + "2. Δυαδική Αναζήτηση\n"
+                                                    + "3. Επιστροφή στην Επιλογή Πεδίου Αναζήτησης\n"
+                                                    + "\nΔώστε Επιλογή (1-3):");
+                                    choice = UserInput.getInteger();
+                                }while(choice !=3);
+                                
+                                break;
+                            case 3:
+                                System.out.println("Επιστροφή πίσω");
+                                break;
+                            default:
+                                System.out.println("Λάθος τιμή προσπαθήστε ξανά.");
+                                break;
+                        }
+                    }while(choice != 3);
                     break;
                 case 3:
                     System.out.println("3 selected - Φιλτράρισμα βιβλίων βάσει τιμής");
@@ -50,14 +101,52 @@ public class OOP_assign1 {
 
     }
 
-    static boolean correctISBN(){
-        
-        
-        return true;
+    static boolean correctISBN(String ISBN, int year) {
+        int[] ISBN10 = new int[10];
+        int[] ISBN13 = new int[13];
+
+        int sum = 0;
+
+        if (ISBN.length() == 10 || ISBN.length() == 13) {
+
+            if (year > 2006) {
+                for (int i = 0; i < 13; i++) {
+                    ISBN13[i] = Character.getNumericValue(ISBN.charAt(i));
+                }
+                for (int i = 0; i < 13; i += 2) {
+                    sum += ISBN13[i];
+                }
+                for (int i = 1; i < 13; i += 2) {
+                    sum += ISBN13[i] * 3;
+                }
+                System.out.println("Sum Check is " + sum);
+                if (sum % 10 == 0) {
+                    return true;
+                } else {
+                    System.out.println("Λάθος τιμή ISBN προσπαθήστε ξανά");
+                    return false;
+                }
+            } else {
+                for (int i = 0; i < 10; i++) {
+                    ISBN10[i] = Character.getNumericValue(ISBN.charAt(i));
+                }
+                for (int i = 0; i < 10; i++) {
+                    sum += (10 - i) * ISBN10[i];
+                }
+                System.out.println("Sum Check is " + sum);
+                if (sum % 11 == 0) {
+                    return true;
+                } else {
+                    System.out.println("Λάθος τιμή ISBN προσπαθήστε ξανά");
+                    return false;
+                }
+            }
+
+        }
+        return false;
     }
-    
-    static void InsertBook(Book[] arrayOfBooks,int index){
-        
+    static void InsertBook(Book[] arrayOfBooks, int index) {
+
         int[] ISBN10 = new int[10];
         int[] ISBN13 = new int[13];
         int sum = 0;
@@ -65,70 +154,32 @@ public class OOP_assign1 {
         String ISBNCheck;
 
         System.out.println("Εισάγετε τα δεδομένα: (Έτος έκδοσης) (ISBN) (Τίτλος βιβλίου) (Ονοματεπώνυμο συγγραφέα)"
-                            + " (Εκδοτικός οίκος) (Αριθμός σελίδων) (Τιμή) ");
-        
+                + " (Εκδοτικός οίκος) (Αριθμός σελίδων) (Τιμή) ");
+
         int year = UserInput.getInteger();
-        
-     
-        
-        for(;;){
-        if (year <1000 || year > 9999){
+
+        for (;;) {
+            if (year < 1000 || year > 9999) {
                 System.out.println("Λάθος τιμή Έτος έκδοσης προσπαθήστε ξάνα");
                 year = UserInput.getInteger();
+            } else {
+                break;
             }
-        else{
-            break;
-            }
-        }    
-        
-        do{
+        }
+
+        for (;;) {
             ISBNCheck = UserInput.getString();
-           
-            if(ISBNCheck.length() == 10 || ISBNCheck.length() == 13){
-           
-               if(year > 2006){
-                for(int i = 0; i<13; i++){
-                    ISBN13[i] = Character.getNumericValue(ISBNCheck.charAt(i));
-                }
-                for(int i = 0; i<13; i+=2){
-                    sum += ISBN13[i];
-                }
-                for(int i = 1; i<13; i+=2){
-                    sum += ISBN13[i] * 3;
-                }
-                if(sum%10 == 0){
-                    flag = false;
-                }else{
-                    System.out.println("Λάθος τιμή ISBN προσπαθήστε ξανά");
-                }
+            if (correctISBN(ISBNCheck, year)) {
+                break;
             }
-            else{
-                 for(int i = 0; i<10; i++){
-                    ISBN10[i] = Character.getNumericValue(ISBNCheck.charAt(i));
-                }
-                //NOT FINISHED!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!NOT FINISHED
-                 for(int i = 0; i<10; i++){
-                    sum += (10 - i) * ISBN10[i];
-                }
-                if(sum%11 == 0){
-                    flag = false;
-                }else{
-                    System.out.println("Λάθος τιμή ISBN προσπαθήστε ξανά");
-                }
-            }
-            
-         }
-           else{
-               System.out.println("Λάθος τιμή ISBN προσπαθήστε ξανά");
-           }
+
            
-        }while(flag);
-        
-        
-        arrayOfBooks[index] = new Book (UserInput.getString(),UserInput.getString(),ISBNCheck,UserInput.getString(),
-                                        UserInput.getInteger(),year,
-                                        UserInput.getDouble());
-        return;
+            return;
+        }
+         arrayOfBooks[index] = new Book(UserInput.getString(), UserInput.getString(), ISBNCheck, UserInput.getString(),
+                    UserInput.getInteger(), year,
+                    UserInput.getDouble());
+
     }
     
     public static void main(String[] args) {
