@@ -35,7 +35,7 @@ class MyUtils {
             }
         }
         
-        return arrayOfBooks;
+        return totalResult;
     }
 
     

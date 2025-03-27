@@ -6,7 +6,7 @@ public class OOP_assign1 {
 
         int choice = 0;
         int index = 0;
-        
+
         do {
             System.out.println("\tΛίστα Επιλογών\n"
                     + "1. Εισαγωγή στοιχείων βιβλίου\n"
@@ -50,11 +50,14 @@ public class OOP_assign1 {
                                 }while(choice !=3);
                                     switch(choice){
                                         case 1:
-                                            System.out.println("1 επιλέχτηκε - Σειριακή Αναζήτηση");
-                                            MyUtils.seqSearch("asd",arrayOfBooks);
+                                            System.out.println("1 επιλέχτηκε - Σειριακή Αναζήτηση\n"
+                                                            + "Δώστε τιμή ISBN: ");
+                                            String tempISBN = UserInput.getString();
+                                            System.out.println(MyUtils.seqSearch(tempISBN,arrayOfBooks));
                                             break;
                                         case 2:
                                             System.out.println("2 επιλέχτηκε - Δυαδική Αναζήτηση");
+                                            break;
                                         case 3:
                                             System.out.println("Επιστροφή πίσω");
                                             break;
@@ -72,7 +75,30 @@ public class OOP_assign1 {
                                                     + "\nΔώστε Επιλογή (1-3):");
                                     choice = UserInput.getInteger();
                                 }while(choice !=3);
-                                
+                                    switch(choice){
+                                        case 1:
+                                            System.out.println("1 επιλέχτηκε - Σειριακή Αναζήτηση\n"
+                                                            + "Δώστε χρονιά: ");
+                                            int tempYear = UserInput.getInteger();
+                                            Book[] result = MyUtils.seqSearch(tempYear,arrayOfBooks);
+                                            if(result == null || result.length == 0){
+                                                System.out.println("Δεν βρέθηκαν βιβλία");
+                                            }else{
+                                             for(int i = 0; i<result.length; i++){
+                                                    System.out.println(result[i]);
+                                                }
+                                            }
+                                            break;
+                                        case 2:
+                                            System.out.println("2 επιλέχτηκε - Δυαδική Αναζήτηση");
+                                            break;
+                                        case 3:
+                                            System.out.println("Επιστροφή πίσω");
+                                            break;
+                                        default:
+                                            System.out.println("Κάτι πήγε λάθος!");
+                                            break;
+                                    }
                                 break;
                             case 3:
                                 System.out.println("Επιστροφή πίσω");
