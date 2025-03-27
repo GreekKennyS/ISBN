@@ -62,6 +62,7 @@ public class OOP_assign1 {
                                             break;
                                         case 2:
                                             System.out.println("2 επιλέχτηκε - Δυαδική Αναζήτηση");
+                                            
                                             break;
                                         case 3:
                                             System.out.println("Επιστροφή πίσω");

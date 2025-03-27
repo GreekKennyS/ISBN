@@ -39,5 +39,76 @@ class MyUtils {
         return totalResult;
     }
 
-    
+    static Book binSearch(String ISBN, Book[] arrayOfBooks) {
+        int left = 0;
+        int right = arrayOfBooks.length - 1;
+
+        while (left <= right) {
+            int mid = (left + right) / 2;
+
+            if (arrayOfBooks[mid] != null && arrayOfBooks[mid].getISBN().equals(ISBN)) {
+                return arrayOfBooks[mid];
+            }
+
+            if(arrayOfBooks[mid] != null && arrayOfBooks[mid].getISBN().compareTo(ISBN) > 0){
+                right = mid - 1;
+            }else{
+                left = mid + 1; 
+            }
+        }
+        return null;
+    }
+
+
+    static Book[] binSearch(int year, Book[] arrayOfBooks) {
+        int left = 0;
+        int right = arrayOfBooks.length - 1;
+        int mid = -1;
+        
+        while(left<= right){
+            mid = (left + right) / 2;
+            if(arrayOfBooks[mid] != null && arrayOfBooks[mid].getYearPublished() == year ){
+                break;
+            }
+            
+            if(arrayOfBooks[mid] != null && arrayOfBooks[mid].getYearPublished() > year){
+                right = mid - 1;
+            }else{
+                left = mid + 1;
+            }
+        }
+        
+        if(mid == -1 || arrayOfBooks[mid] == null || arrayOfBooks[mid].getYearPublished() != year){
+            return null;
+        }
+        
+        Book[] result = new Book[10];
+        result[0] = arrayOfBooks[mid];
+        int seqLeftSide = mid;
+        int seqRightSide = mid;
+        int index = 0;
+        
+        while(seqLeftSide > 0){
+            if(arrayOfBooks[seqLeftSide - 1].getYearPublished() == year){
+                result[index + 1] = arrayOfBooks[seqLeftSide - 1];
+                index++;
+            }
+            seqLeftSide--;
+        }
+
+        while(seqRightSide < arrayOfBooks.length - 1){
+            if(arrayOfBooks[seqRightSide+1].getYearPublished() == year){
+                result[index + 1] = arrayOfBooks[seqRightSide + 1];
+                index++;
+            }
+            seqRightSide++;
+        }
+
+        
+        return result;
+
+    }
+
+
+
 }
