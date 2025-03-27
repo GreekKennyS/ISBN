@@ -12,8 +12,11 @@ class MyUtils {
                 break;
             }
         }
-        
-        return arrayOfBooks[index];
+        if(index == -1){
+            return null;
+        }else{
+            return arrayOfBooks[index];
+        }
     }
 
     static Book[] seqSearch(int year,Book[] arrayOfBooks){

@@ -53,7 +53,12 @@ public class OOP_assign1 {
                                             System.out.println("1 επιλέχτηκε - Σειριακή Αναζήτηση\n"
                                                             + "Δώστε τιμή ISBN: ");
                                             String tempISBN = UserInput.getString();
-                                            System.out.println(MyUtils.seqSearch(tempISBN,arrayOfBooks));
+                                            Book tempISBNBook = MyUtils.seqSearch(tempISBN,arrayOfBooks);
+                                            if(tempISBNBook == null){
+                                                System.out.println("Δεν βρέθηκε βιβλίο");
+                                            }else{
+                                            System.out.println("Βρέθηκε βιβλίο: "+tempISBNBook);
+                                            }
                                             break;
                                         case 2:
                                             System.out.println("2 επιλέχτηκε - Δυαδική Αναζήτηση");
