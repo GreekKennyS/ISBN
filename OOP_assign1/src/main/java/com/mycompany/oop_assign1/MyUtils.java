@@ -110,10 +110,15 @@ class MyUtils {
     }
 
     static void valueSearch(Book[] arrayOfBooks,double lowerPrice,double upperPrice){
+        int count = 0;
         for(int i = 0; i<arrayOfBooks.length; i++){
             if(arrayOfBooks[i] != null && arrayOfBooks[i].getPrice() >= lowerPrice && arrayOfBooks[i].getPrice() <= upperPrice){
                 System.out.println(arrayOfBooks[i]);
+                count++;
             }
+        }
+        if(count == 0){
+            System.out.println("Δεν βρέθηκαν βιβλία με αυτά τα όρια\nΕλάχιστη τιμή: "+lowerPrice+"\nΜέγιστη τιμή: "+upperPrice);
         }
     };
 

@@ -92,7 +92,7 @@ public class OOP_assign1 {
                                         tempISBN = UserInput.getString();
                                         Book tempISBNBook = MyUtils.seqSearch(tempISBN, arrayOfBooks);
                                         if (tempISBNBook == null) {
-                                            System.out.println("Δεν βρέθηκε βιβλίο");
+                                            System.out.println("Δεν βρέθηκε κανένα βιβλίο με τιμή ISBN: "+tempISBN);
                                         } else {
                                             System.out.println("Βρέθηκε βιβλίο: " + tempISBNBook);
                                         }
@@ -103,7 +103,7 @@ public class OOP_assign1 {
                                         tempISBN = UserInput.getString();
                                         Book tempISBNBook2 = MyUtils.binSearch(tempISBN, arrayOfBooks);
                                         if (tempISBNBook2 == null) {
-                                            System.out.println("Δεν βρέθηκε βιβλίο");
+                                            System.out.println("Δεν βρέθηκε βιβλίο με τιμή ISBN: "+tempISBN);
                                         } else {
                                             System.out.println("Βρέθηκε βιβλίο: " + tempISBNBook2);
                                         }
@@ -133,7 +133,7 @@ public class OOP_assign1 {
                                         tempYear = UserInput.getInteger();
                                         Book[] result = MyUtils.seqSearch(tempYear, arrayOfBooks);
                                         if (result == null || result.length == 0) {
-                                            System.out.println("Δεν βρέθηκαν βιβλία");
+                                            System.out.println("Δεν βρέθηκαν βιβλία με τιμή χρονιάς: "+tempYear);
                                         } else {
                                             for (int i = 0; i < result.length; i++) {
                                                 System.out.println(result[i]);
@@ -146,7 +146,7 @@ public class OOP_assign1 {
                                         tempYear = UserInput.getInteger();
                                         Book[] result2 = MyUtils.binSearch(tempYear, arrayOfBooks);
                                         if (result2 == null || result2.length == 0) {
-                                            System.out.println("Δεν βρέθηκαν βιβλία");
+                                            System.out.println("Δεν βρέθηκαν βιβλία με τιμή χρονιάς: "+tempYear);
                                         } else {
                                             for (int i = 0; i < result2.length; i++) {
                                                 System.out.println(result2[i]);
@@ -172,11 +172,15 @@ public class OOP_assign1 {
                     break;
                 case 3:
                     System.out.println("3 selected - Φιλτράρισμα βιβλίων βάσει τιμής");
+                    
                     System.out.println("Δώστε την ελάχιστη τιμή: ");
                     double minimumPrice = UserInput.getDouble();
+                    
                     System.out.println("Δώστε την Μέγιστη τιμή: ");
                     double maximumPrice = UserInput.getDouble();
+                    
                     MyUtils.valueSearch(arrayOfBooks, minimumPrice, maximumPrice);
+                    
                     break;
                 case 4:
                     System.out.println("4 selected - Προβολή όλων των βιβλίων");
