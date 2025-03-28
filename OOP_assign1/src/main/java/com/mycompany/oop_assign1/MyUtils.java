@@ -109,6 +109,13 @@ class MyUtils {
 
     }
 
+    static void valueSearch(Book[] arrayOfBooks,double lowerPrice,double upperPrice){
+        for(int i = 0; i<arrayOfBooks.length; i++){
+            if(arrayOfBooks[i] != null && arrayOfBooks[i].getPrice() >= lowerPrice && arrayOfBooks[i].getPrice() <= upperPrice){
+                System.out.println(arrayOfBooks[i]);
+            }
+        }
+    };
 
 
 }
