@@ -128,6 +128,8 @@ public class Book {
                 }
             }
 
+        }else{
+            System.out.println("Invalid ISBN length. It must be 10 digits or 13 digits");
         }
         return false;
     }
