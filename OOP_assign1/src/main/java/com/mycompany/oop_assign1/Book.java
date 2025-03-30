@@ -72,66 +72,58 @@ public class Book {
     }
 
     public void setYearPublished(int yearPublished) {
-        if(yearPublished >999 && yearPublished <1000){
-        this.yearPublished = yearPublished;
-        }else{
-            System.out.println("Invalid year value must be 4 digits!!!");
+        if (yearPublished > 999 && yearPublished < 1000) {
+            this.yearPublished = yearPublished;
+        } else {
+            System.out.println("Μη έγκυρος αριθμός Έτους Έκδοσης\nΠρέπει να είναι τετραψήφιος ακέραιος");
         }
     }
+
     public void setPrice(double price) {
         this.price = price;
     }
 
     @Override
     public String toString() {
-        return "Book{" + "title=" + title + ", author=" + author + ", ISBN=" + ISBN + ", publisher=" + publisher + ", numberPages=" + numberPages + ", yearPublished=" + yearPublished + ", price=" + price + '}';
+        return "Βιβλίο{" + "Τίτλος βιβλίου: " + title + ", Συγγραφέας: " + author + ", ISBN: " + ISBN + ", Εκδοτικός οίκος: " + publisher + ", Αριθμός σελίδων: " + numberPages + ", Έτος έκδοσης: " + yearPublished + ", Τιμή: " + price + '}';
     }
-    
-    static boolean correctISBN(String ISBN, int year) {
-        int[] ISBN10 = new int[10];
-        int[] ISBN13 = new int[13];
+
+    public static boolean correctISBN(String ISBN, int year) {
 
         int sum = 0;
 
-        if (ISBN.length() == 10 || ISBN.length() == 13) {
+        if (ISBN.length() == 10 && year < 2007) {
 
-            if (year > 2006) {
-                for (int i = 0; i < 13; i++) {
-                    ISBN13[i] = Character.getNumericValue(ISBN.charAt(i));
-                }
-                for (int i = 0; i < 13; i += 2) {
-                    sum += ISBN13[i];
-                }
-                for (int i = 1; i < 13; i += 2) {
-                    sum += ISBN13[i] * 3;
-                }
-                System.out.println("Sum Check is " + sum);
-                if (sum % 10 == 0) {
-                    return true;
-                } else {
-                    System.out.println("Λάθος τιμή ISBN προσπαθήστε ξανά");
-                    return false;
-                }
-            } else {
-                for (int i = 0; i < 10; i++) {
-                    ISBN10[i] = Character.getNumericValue(ISBN.charAt(i));
-                }
-                for (int i = 0; i < 10; i++) {
-                    sum += (10 - i) * ISBN10[i];
-                }
-                System.out.println("Sum Check is " + sum);
-                if (sum % 11 == 0) {
-                    return true;
-                } else {
-                    System.out.println("Λάθος τιμή ISBN προσπαθήστε ξανά");
-                    return false;
-                }
+            for (int i = 0; i < 10; i++) {
+                sum += (10 - i) * (ISBN.charAt(i) - '0');
             }
 
-        }else{
-            System.out.println("Invalid ISBN length. It must be 10 digits or 13 digits");
+            if (sum % 11 == 0) {
+                return true;
+            } else {
+                System.out.println("Λάθος τιμή ISBN προσπαθήστε ξανά");
+                return false;
+            }
+
+        } else if (ISBN.length() == 13 && year > 2006) {
+            
+            for (int i = 0; i < 13; i += 2) {
+                sum += ISBN.charAt(i);
+            }
+            for (int i = 1; i < 13; i += 2) {
+                sum += ISBN.charAt(i) * 3;
+            }
+
+            if (sum % 10 == 0) {
+                return true;
+            } else {
+                System.out.println("Λάθος τιμή ISBN προσπαθήστε ξανά");
+                return false;
+            }
+        } else {
+            System.out.println("Μη έγκυρο μέγεθος ISBN\nΠρέπει να είναι είτε 10 είτε 13 ψηφία ανάλογα με το έτος έκδοσης");
         }
         return false;
     }
-    
+
 }
