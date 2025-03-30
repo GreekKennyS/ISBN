@@ -12,7 +12,7 @@ class MyUtils {
                 break;
             }
         }
-        
+
         if (index == -1) {
             return null;
         } else {
@@ -23,19 +23,18 @@ class MyUtils {
     public static Book[] seqSearch(int year, Book[] arrayOfBooks) {
 
         int count = 0;
-        
 
         for (int i = 0; i < arrayOfBooks.length; i++) {
-            if ( arrayOfBooks[i] != null && arrayOfBooks[i].getYearPublished() == year) {
+            if (arrayOfBooks[i] != null && arrayOfBooks[i].getYearPublished() == year) {
                 count++;
             }
         }
-        
+
         Book[] totalResult = new Book[count];
         int index = 0;
         for (int i = 0; i < arrayOfBooks.length; i++) {
-            if(arrayOfBooks[i] != null){
-                if(arrayOfBooks[i].getYearPublished() == year){
+            if (arrayOfBooks[i] != null) {
+                if (arrayOfBooks[i].getYearPublished() == year) {
                     totalResult[index] = arrayOfBooks[i];
                     index++;
                 }
@@ -52,47 +51,45 @@ class MyUtils {
 
         while (left <= right) {
             int mid = (left + right) / 2;
-            if(arrayOfBooks[mid] != null){
-            if (arrayOfBooks[mid].getISBN().equals(ISBN)) {
-                return arrayOfBooks[mid];
+            if (arrayOfBooks[mid] != null) {
+                if (arrayOfBooks[mid].getISBN().equals(ISBN)) {
+                    return arrayOfBooks[mid];
+                }
+
+                if (arrayOfBooks[mid].getISBN().compareTo(ISBN) > 0) {
+                    right = mid - 1;
+                } else if (arrayOfBooks[mid].getISBN().compareTo(ISBN) < 0) {
+                    left = mid + 1;
+                }
+            } else {
+                right--;
             }
 
-            if (arrayOfBooks[mid].getISBN().compareTo(ISBN) > 0) {
-                right = mid - 1;
-            } else if(arrayOfBooks[mid].getISBN().compareTo(ISBN) < 0) {
-                left = mid + 1;
-            }
         }
-        else{
-                right--;
-                }
-        
+        return null;
     }
-return null;
-}
-public static Book[] binSearch(int year, Book[] arrayOfBooks) {
+
+    public static Book[] binSearch(int year, Book[] arrayOfBooks) {
         int left = 0;
         int right = arrayOfBooks.length - 1;
         int mid = -1;
 
         while (left <= right) {
             mid = (left + right) / 2;
-            if (arrayOfBooks[mid] != null){
-                if( arrayOfBooks[mid].getYearPublished() == year) {
-                break;}
-            
+            if (arrayOfBooks[mid] != null) {
+                if (arrayOfBooks[mid].getYearPublished() == year) {
+                    break;
+                }
 
-            
-                if(arrayOfBooks[mid].getYearPublished() > year)
-                     {
-                right = mid - 1;
+                if (arrayOfBooks[mid].getYearPublished() > year) {
+                    right = mid - 1;
+                } else {
+                    left = mid + 1;
+                }
             } else {
-                left = mid + 1;
+                right--;
             }
-    }else{
-        right--;
-}
-}
+        }
         if (mid == -1 || arrayOfBooks[mid] == null || arrayOfBooks[mid].getYearPublished() != year) {
             return null;
         }
@@ -104,19 +101,21 @@ public static Book[] binSearch(int year, Book[] arrayOfBooks) {
         int index = 1;
 
         while (seqLeftSide > 0) {
-            if (arrayOfBooks[seqLeftSide-1] != null){
-                if(arrayOfBooks[seqLeftSide - 1].getYearPublished() == year) {
-                result[index] = arrayOfBooks[seqLeftSide - 1];
-                index++;}
+            if (arrayOfBooks[seqLeftSide - 1] != null) {
+                if (arrayOfBooks[seqLeftSide - 1].getYearPublished() == year) {
+                    result[index] = arrayOfBooks[seqLeftSide - 1];
+                    index++;
+                }
             }
             seqLeftSide--;
         }
 
         while (seqRightSide < arrayOfBooks.length - 1) {
-            if (arrayOfBooks[seqRightSide+1] != null){
-                if(arrayOfBooks[seqRightSide + 1].getYearPublished() == year) {
-                result[index] = arrayOfBooks[seqRightSide + 1];
-                index++;}
+            if (arrayOfBooks[seqRightSide + 1] != null) {
+                if (arrayOfBooks[seqRightSide + 1].getYearPublished() == year) {
+                    result[index] = arrayOfBooks[seqRightSide + 1];
+                    index++;
+                }
             }
             seqRightSide++;
         }
@@ -138,6 +137,5 @@ public static Book[] binSearch(int year, Book[] arrayOfBooks) {
         }
     }
 ;
-
 
 }
