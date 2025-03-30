@@ -9,7 +9,8 @@ public class OOP_assign1 {
         arrayOfBooks[1] = new Book("TItle","Writer","9781492078005","skit",90,2007,31.13);
         arrayOfBooks[2] = new Book("TItle","Writer","9781449373320","solas",90,2008,10.13);
         arrayOfBooks[3] = new Book("TItle","Writer","9781491910771","milo",90,2009,25.13);
-        arrayOfBooks[4] = new Book("TItle","Writer","9780134685991","publishingHouse",90,2010,23.13);
+        arrayOfBooks[4] = new Book("TItle","Writer","9781491910771","milo",120,2009,27.13);
+        arrayOfBooks[5] = new Book("TItle","Writer","9780134685991","publishingHouse",90,2010,23.13);
         
         int choice = 0;
         int index = 0;
@@ -137,7 +138,7 @@ public class OOP_assign1 {
                                         System.out.println("Επιλογή 1 - Σειριακή Αναζήτηση\n"
                                                 + "Δώστε έτος έκδοσης: ");
                                         tempYear = UserInput.getInteger();
-                                        Book[] result = MyUtils.seqSearch(tempYear, arrayOfBooks,index);
+                                        Book[] result = MyUtils.seqSearch(tempYear, arrayOfBooks);
                                         if (result == null || result.length == 0) {
                                             System.out.println("Δεν βρέθηκαν βιβλία με τιμή χρονιάς: "+tempYear);
                                         } else {

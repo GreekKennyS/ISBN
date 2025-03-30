@@ -20,23 +20,27 @@ class MyUtils {
         }
     }
 
-    public static Book[] seqSearch(int year, Book[] arrayOfBooks,int bounds) {
+    public static Book[] seqSearch(int year, Book[] arrayOfBooks) {
 
         int count = 0;
         
 
-        for (int i = 0; i < 4; i++) {
+        for (int i = 0; i < arrayOfBooks.length; i++) {
             if ( arrayOfBooks[i] != null && arrayOfBooks[i].getYearPublished() == year) {
                 count++;
             }
         }
         
         Book[] totalResult = new Book[count];
-
-        for (int i = 0; i < count; i++) {
-            if (arrayOfBooks[i].getYearPublished() == year && arrayOfBooks[i] != null) {
-                totalResult[i] = arrayOfBooks[i];
+        int index = 0;
+        for (int i = 0; i < arrayOfBooks.length; i++) {
+            if(arrayOfBooks[i] != null){
+                if(arrayOfBooks[i].getYearPublished() == year){
+                    totalResult[index] = arrayOfBooks[i];
+                    index++;
+                }
             }
+
         }
 
         return totalResult;
