@@ -7,7 +7,7 @@ class MyUtils {
         int index = -1;
 
         for (int i = 0; i < arrayOfBooks.length; i++) {
-            if (arrayOfBooks[i].getISBN().equals(ISBN)) {
+            if (arrayOfBooks[i] != null && arrayOfBooks[i].getISBN().equals(ISBN)) {
                 index = i;
                 break;
             }
@@ -52,21 +52,25 @@ class MyUtils {
 
         while (left <= right) {
             int mid = (left + right) / 2;
-
-            if (arrayOfBooks[mid] != null && arrayOfBooks[mid].getISBN().equals(ISBN)) {
+            if(arrayOfBooks[mid] != null){
+            if (arrayOfBooks[mid].getISBN().equals(ISBN)) {
                 return arrayOfBooks[mid];
             }
 
-            if (arrayOfBooks[mid] != null && arrayOfBooks[mid].getISBN().compareTo(ISBN) > 0) {
+            if (arrayOfBooks[mid].getISBN().compareTo(ISBN) > 0) {
                 right = mid - 1;
-            } else {
+            } else if(arrayOfBooks[mid].getISBN().compareTo(ISBN) < 0) {
                 left = mid + 1;
             }
         }
-        return null;
+        else{
+                right--;
+                }
+        
     }
-
-    public static Book[] binSearch(int year, Book[] arrayOfBooks) {
+return null;
+}
+public static Book[] binSearch(int year, Book[] arrayOfBooks) {
         int left = 0;
         int right = arrayOfBooks.length - 1;
         int mid = -1;
@@ -76,17 +80,19 @@ class MyUtils {
             if (arrayOfBooks[mid] != null){
                 if( arrayOfBooks[mid].getYearPublished() == year) {
                 break;}
-            }
+            
 
-            if (arrayOfBooks[mid] != null){
+            
                 if(arrayOfBooks[mid].getYearPublished() > year)
                      {
-                right = mid - 1;}
+                right = mid - 1;
             } else {
                 left = mid + 1;
             }
-        }
-
+    }else{
+        right--;
+}
+}
         if (mid == -1 || arrayOfBooks[mid] == null || arrayOfBooks[mid].getYearPublished() != year) {
             return null;
         }

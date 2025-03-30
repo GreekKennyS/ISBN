@@ -5,12 +5,6 @@ public class OOP_assign1 {
     public static void main(String[] args) {
 
         Book[] arrayOfBooks = new Book[10];
-        arrayOfBooks[0] = new Book("TItle", "Writer", "1449373321", "Publisher", 90, 2006, 60.13);
-        arrayOfBooks[1] = new Book("TItle", "Writer", "9781492078005", "skit", 90, 2007, 31.13);
-        arrayOfBooks[2] = new Book("TItle", "Writer", "9781449373320", "solas", 90, 2008, 10.13);
-        arrayOfBooks[3] = new Book("TItle", "Writer", "9781491910771", "milo", 90, 2009, 25.13);
-        arrayOfBooks[4] = new Book("TItle", "Writer", "9781491910771", "milo", 120, 2009, 27.13);
-        arrayOfBooks[5] = new Book("TItle", "Writer", "9780134685991", "publishingHouse", 90, 2010, 23.13);
 
         int choice = 0;
         int index = 0;
