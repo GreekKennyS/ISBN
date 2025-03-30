@@ -73,12 +73,15 @@ class MyUtils {
 
         while (left <= right) {
             mid = (left + right) / 2;
-            if (arrayOfBooks[mid] != null && arrayOfBooks[mid].getYearPublished() == year) {
-                break;
+            if (arrayOfBooks[mid] != null){
+                if( arrayOfBooks[mid].getYearPublished() == year) {
+                break;}
             }
 
-            if (arrayOfBooks[mid] != null && arrayOfBooks[mid].getYearPublished() > year) {
-                right = mid - 1;
+            if (arrayOfBooks[mid] != null){
+                if(arrayOfBooks[mid].getYearPublished() > year)
+                     {
+                right = mid - 1;}
             } else {
                 left = mid + 1;
             }
@@ -92,20 +95,22 @@ class MyUtils {
         result[0] = arrayOfBooks[mid];
         int seqLeftSide = mid;
         int seqRightSide = mid;
-        int index = 0;
+        int index = 1;
 
         while (seqLeftSide > 0) {
-            if (arrayOfBooks[seqLeftSide - 1].getYearPublished() == year) {
-                result[index + 1] = arrayOfBooks[seqLeftSide - 1];
-                index++;
+            if (arrayOfBooks[seqLeftSide-1] != null){
+                if(arrayOfBooks[seqLeftSide - 1].getYearPublished() == year) {
+                result[index] = arrayOfBooks[seqLeftSide - 1];
+                index++;}
             }
             seqLeftSide--;
         }
 
         while (seqRightSide < arrayOfBooks.length - 1) {
-            if (arrayOfBooks[seqRightSide + 1].getYearPublished() == year) {
-                result[index + 1] = arrayOfBooks[seqRightSide + 1];
-                index++;
+            if (arrayOfBooks[seqRightSide+1] != null){
+                if(arrayOfBooks[seqRightSide + 1].getYearPublished() == year) {
+                result[index] = arrayOfBooks[seqRightSide + 1];
+                index++;}
             }
             seqRightSide++;
         }

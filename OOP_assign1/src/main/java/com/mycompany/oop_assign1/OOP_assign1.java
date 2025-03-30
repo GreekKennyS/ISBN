@@ -5,13 +5,13 @@ public class OOP_assign1 {
     public static void main(String[] args) {
 
         Book[] arrayOfBooks = new Book[10];
-        arrayOfBooks[0] = new Book("TItle","Writer","1449373321","Publisher",90,2006,60.13);
-        arrayOfBooks[1] = new Book("TItle","Writer","9781492078005","skit",90,2007,31.13);
-        arrayOfBooks[2] = new Book("TItle","Writer","9781449373320","solas",90,2008,10.13);
-        arrayOfBooks[3] = new Book("TItle","Writer","9781491910771","milo",90,2009,25.13);
-        arrayOfBooks[4] = new Book("TItle","Writer","9781491910771","milo",120,2009,27.13);
-        arrayOfBooks[5] = new Book("TItle","Writer","9780134685991","publishingHouse",90,2010,23.13);
-        
+        arrayOfBooks[0] = new Book("TItle", "Writer", "1449373321", "Publisher", 90, 2006, 60.13);
+        arrayOfBooks[1] = new Book("TItle", "Writer", "9781492078005", "skit", 90, 2007, 31.13);
+        arrayOfBooks[2] = new Book("TItle", "Writer", "9781449373320", "solas", 90, 2008, 10.13);
+        arrayOfBooks[3] = new Book("TItle", "Writer", "9781491910771", "milo", 90, 2009, 25.13);
+        arrayOfBooks[4] = new Book("TItle", "Writer", "9781491910771", "milo", 120, 2009, 27.13);
+        arrayOfBooks[5] = new Book("TItle", "Writer", "9780134685991", "publishingHouse", 90, 2010, 23.13);
+
         int choice = 0;
         int index = 0;
         int tempYear;
@@ -53,7 +53,7 @@ public class OOP_assign1 {
                             if (ISBNCheck.equals("0")) {
                                 break;
                             }
-                            
+
                             if (Book.correctISBN(ISBNCheck, year)) {
                                 arrayOfBooks[index] = new Book(UserInput.getString(), UserInput.getString(), ISBNCheck, UserInput.getString(),
                                         UserInput.getInteger(), year,
@@ -86,88 +86,90 @@ public class OOP_assign1 {
                                     System.out.println("\t Επιλογή Μεθόδου Αναζήτησης\n"
                                             + "1.\tΣειριακή Αναζήτηση\n"
                                             + "2.\tΔυαδική Αναζήτηση (Προσοχή ο πίνακας πρέπει\n"
-                                              + "\tνα είναι ταξινομημένος κατά το πεδίο αναζήτησης) \n"
+                                            + "\tνα είναι ταξινομημένος κατά το πεδίο αναζήτησης) \n"
                                             + "3.\tΕπιστροφή στην Επιλογή Πεδίου Αναζήτησης\n"
                                             + "\n\tΔώστε Επιλογή (1-3):");
                                     choice = UserInput.getInteger();
-                                
-                                switch (choice) {
-                                    case 1:
-                                        System.out.println("Επιλογή 1 - Σειριακή Αναζήτηση\n"
-                                                + "Δώστε τιμή ISBN: ");
-                                        tempISBN = UserInput.getString();
-                                        Book tempISBNBook = MyUtils.seqSearch(tempISBN, arrayOfBooks);
-                                        if (tempISBNBook == null) {
-                                            System.out.println("Δεν βρέθηκε κανένα βιβλίο με τιμή ISBN: "+tempISBN);
-                                        } else {
-                                            System.out.println("Βρέθηκε βιβλίο: " + tempISBNBook);
-                                        }
-                                        break;
-                                    case 2:
-                                        System.out.println("Επιλογή 2 - Δυαδική Αναζήτηση"
-                                                + "Δώστε τιμή ISBN: ");
-                                        tempISBN = UserInput.getString();
-                                        Book tempISBNBook2 = MyUtils.binSearch(tempISBN, arrayOfBooks);
-                                        if (tempISBNBook2 == null) {
-                                            System.out.println("Δεν βρέθηκε βιβλίο με τιμή ISBN: "+tempISBN);
-                                        } else {
-                                            System.out.println("Βρέθηκε βιβλίο: " + tempISBNBook2);
-                                        }
-                                        break;
-                                    case 3:
-                                        System.out.println("Επιστροφή\n");
-                                        break;
-                                    default:
-                                        System.out.println("Λάθος τιμή προσπαθήστε ξανά");
-                                        break;
-                                }
-                                }while(choice != 3);
+
+                                    switch (choice) {
+                                        case 1:
+                                            System.out.println("Επιλογή 1 - Σειριακή Αναζήτηση\n"
+                                                    + "Δώστε τιμή ISBN: ");
+                                            tempISBN = UserInput.getString();
+                                            Book tempISBNBook = MyUtils.seqSearch(tempISBN, arrayOfBooks);
+                                            if (tempISBNBook == null) {
+                                                System.out.println("Δεν βρέθηκε κανένα βιβλίο με τιμή ISBN: " + tempISBN);
+                                            } else {
+                                                System.out.println("Βρέθηκε βιβλίο: " + tempISBNBook);
+                                            }
+                                            break;
+                                        case 2:
+                                            System.out.println("Επιλογή 2 - Δυαδική Αναζήτηση"
+                                                    + "Δώστε τιμή ISBN: ");
+                                            tempISBN = UserInput.getString();
+                                            Book tempISBNBook2 = MyUtils.binSearch(tempISBN, arrayOfBooks);
+                                            if (tempISBNBook2 == null) {
+                                                System.out.println("Δεν βρέθηκε βιβλίο με τιμή ISBN: " + tempISBN);
+                                            } else {
+                                                System.out.println("Βρέθηκε βιβλίο: " + tempISBNBook2);
+                                            }
+                                            break;
+                                        case 3:
+                                            System.out.println("Επιστροφή\n");
+                                            break;
+                                        default:
+                                            System.out.println("Λάθος τιμή προσπαθήστε ξανά");
+                                            break;
+                                    }
+                                } while (choice != 3);
                                 break;
                             case 2:
                                 do {
                                     System.out.println("\t Επιλογή Μεθόδου Αναζήτησης\n"
                                             + "1.\tΣειριακή Αναζήτηση\n"
                                             + "2.\tΔυαδική Αναζήτηση (Προσοχή ο πίνακας πρέπει\n"
-                                              + "\tνα είναι ταξινομημένος κατά το πεδίο αναζήτησης)\n"
+                                            + "\tνα είναι ταξινομημένος κατά το πεδίο αναζήτησης)\n"
                                             + "3.\tΕπιστροφή στην Επιλογή Πεδίου Αναζήτησης\n"
                                             + "\n\tΔώστε Επιλογή (1-3):");
                                     choice = UserInput.getInteger();
-                                
-                                switch (choice) {
-                                    case 1:
-                                        System.out.println("Επιλογή 1 - Σειριακή Αναζήτηση\n"
-                                                + "Δώστε έτος έκδοσης: ");
-                                        tempYear = UserInput.getInteger();
-                                        Book[] result = MyUtils.seqSearch(tempYear, arrayOfBooks);
-                                        if (result == null || result.length == 0) {
-                                            System.out.println("Δεν βρέθηκαν βιβλία με τιμή χρονιάς: "+tempYear);
-                                        } else {
-                                            for (int i = 0; i < result.length; i++) {
-                                                System.out.println(result[i]);
+
+                                    switch (choice) {
+                                        case 1:
+                                            System.out.println("Επιλογή 1 - Σειριακή Αναζήτηση\n"
+                                                    + "Δώστε έτος έκδοσης: ");
+                                            tempYear = UserInput.getInteger();
+                                            Book[] result = MyUtils.seqSearch(tempYear, arrayOfBooks);
+                                            if (result == null || result.length == 0) {
+                                                System.out.println("Δεν βρέθηκαν βιβλία με τιμή χρονιάς: " + tempYear);
+                                            } else {
+                                                for (int i = 0; i < result.length; i++) {
+                                                    System.out.println(result[i]);
+                                                }
                                             }
-                                        }
-                                        break;
-                                    case 2:
-                                        System.out.println("2 επιλέχτηκε - Δυαδική Αναζήτηση"
-                                                + "Δώστε έτος έκδοσης: ");
-                                        tempYear = UserInput.getInteger();
-                                        Book[] result2 = MyUtils.binSearch(tempYear, arrayOfBooks);
-                                        if (result2 == null || result2.length == 0) {
-                                            System.out.println("Δεν βρέθηκαν βιβλία με τιμή έτους έκδοσης: "+tempYear);
-                                        } else {
-                                            for (int i = 0; i < result2.length; i++) {
-                                                System.out.println(result2[i]);
+                                            break;
+                                        case 2:
+                                            System.out.println("2 επιλέχτηκε - Δυαδική Αναζήτηση"
+                                                    + "Δώστε έτος έκδοσης: ");
+                                            tempYear = UserInput.getInteger();
+                                            Book[] result2 = MyUtils.binSearch(tempYear, arrayOfBooks);
+                                            if (result2 == null || result2.length == 0) {
+                                                System.out.println("Δεν βρέθηκαν βιβλία με τιμή έτους έκδοσης: " + tempYear);
+                                            } else {
+                                                for (int i = 0; i < result2.length; i++) {
+                                                    if (result2[i] != null) {
+                                                        System.out.println(result2[i]);
+                                                    }
+                                                }
                                             }
-                                        }
-                                        break;
-                                    case 3:
-                                        System.out.println("Επιστροφή\n");
-                                        break;
-                                    default:
-                                        System.out.println("Κάτι πήγε λάθος!");
-                                        break;
-                                }
-                        }while(choice != 3);
+                                            break;
+                                        case 3:
+                                            System.out.println("Επιστροφή\n");
+                                            break;
+                                        default:
+                                            System.out.println("Κάτι πήγε λάθος!");
+                                            break;
+                                    }
+                                } while (choice != 3);
                                 break;
                             case 3:
                                 System.out.println("Επιστροφή\n");
@@ -180,15 +182,15 @@ public class OOP_assign1 {
                     break;
                 case 3:
                     System.out.println("Επιλογή 3 - Φιλτράρισμα βιβλίων βάσει τιμής");
-                    
+
                     System.out.println("Δώστε την Ελάχιστη τιμή: ");
                     double minimumPrice = UserInput.getDouble();
-                    
+
                     System.out.println("Δώστε την Μέγιστη τιμή: ");
                     double maximumPrice = UserInput.getDouble();
-                    
+
                     MyUtils.valueSearch(arrayOfBooks, minimumPrice, maximumPrice);
-                    
+
                     break;
                 case 4:
                     System.out.println("Επιλογή 4 - Προβολή όλων των βιβλίων");
