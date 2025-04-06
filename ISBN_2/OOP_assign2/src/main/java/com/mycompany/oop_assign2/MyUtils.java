@@ -136,6 +136,6 @@ class MyUtils {
             System.out.println("Δεν βρέθηκαν βιβλία με αυτά τα όρια\nΕλάχιστη τιμή: " + lowerPrice + "\nΜέγιστη τιμή: " + upperPrice);
         }
     }
-;
+
 
 }
