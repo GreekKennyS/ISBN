@@ -1,5 +1,5 @@
 
-package com.mycompany.oop_assign1;
+package com.mycompany.oop_assign2;
 
 
 import java.io.*;

@@ -1,6 +1,6 @@
-package com.mycompany.oop_assign1;
+package com.mycompany.oop_assign2;
 
-public class OOP_assign1 {
+public class OOP_assign2 {
 
     public static void main(String[] args) {
 
