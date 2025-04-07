@@ -8,7 +8,11 @@ public class OOP_assign2 {
         
         Book[] arrayOfBooks = new Book[10];
 
+        int sortByChoice;
         int choice = 0;
+        int mainChoice;
+        int searchChoice;
+        int sortChoice;
         int index = 0;
         int tempYear;
         String tempISBN;
@@ -18,9 +22,10 @@ public class OOP_assign2 {
                     + "1.\tΕισαγωγή στοιχείων βιβλίου\n"
                     + "2.\tΑναζήτηση βιβλίου\n"
                     + "3.\tΕμφάνιση στοιχείων βιβλίων με τιμή μεταξύ κάποιων ορίων\n"
-                    + "4.\tΕμφάνιση στοιχείων όλων των βιβλίων\n"
-                    + "5.\tΤέλος\n"
-                    + "\n\tΔώστε Επιλογή (1-4):");
+                    + "4.\tΤαξινόμηση βιβλίων\n"
+                    + "5.\tΕμφάνιση στοιχείων όλων των βιβλίων\n"
+                    + "6.\tΤέλος\n"
+                    + "\n\tΔώστε Επιλογή (1-6):");
             choice = UserInput.getInteger();
 
             switch (choice) {
@@ -188,14 +193,29 @@ public class OOP_assign2 {
 
                     break;
                 case 4:
-                    System.out.println("Επιλογή 4 - Προβολή όλων των βιβλίων");
+                    System.out.println("Επιλογή 4 - Ταξινόμηση Βιβλίων");
+                    do{   
+                    System.out.println("\t Επιλογή Πεδίου Αναζήτησης\n"
+                                + "1.\tΌνομα Συγγραφέα\n"
+                                + "2.\tISBN\n"
+                                + "3.\tΈτος κυκλοφορίας\n"
+                                + "4.\tΤιμή Βιβλίων\n"
+                                + "5.\tΕπιστροφη΄στην Αρχική Λίστα Επιλογών\n"
+                                + "\n\tΔώστε Επιλογή(1-5):");
+                    sortByChoice = UserInput.getInteger();
+
+
+                    }while(sortByChoice != 5);    
+                    break;
+                case 5:
+                    System.out.println("Επιλογή 5 - Προβολή όλων των βιβλίων");
                     for (int i = 0; i < 10; i++) {
                         if (arrayOfBooks[i] != null) {
                             System.out.println(arrayOfBooks[i]);
                         }
                     }
                     break;
-                case 5:
+                case 6:
                     System.out.println("Έξοδος από το πρόγραμμα");
                     break;
                 default:

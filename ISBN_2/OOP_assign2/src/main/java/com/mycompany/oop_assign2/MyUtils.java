@@ -137,8 +137,46 @@ class MyUtils {
         }
     }
 
-    public static void bubbleSort(){
+    public static void bubbleSort(Book[] arrayOfBooks,int sortBy){
         
+        int n = arrayOfBooks.length;
+        boolean swapFlag = false;
+        
+        for(int i = 0; i< n - 1; i++){
+            for(int j = 0; j < i - n - 1; j++){
+                
+                switch(sortBy){
+                    case 1:
+                        if(arrayOfBooks[j].getAuthor().compareTo(arrayOfBooks[j + 1].getAuthor()) > 0){
+                            swapFlag = true;
+                        }
+                        break;
+                    case 2:
+                         if(arrayOfBooks[j].getISBN().compareTo(arrayOfBooks[j + 1].getISBN()) > 0){
+                            swapFlag = true;
+                         }
+                        break;
+                    case 3:
+                        if(arrayOfBooks[j].getYearPublished() > arrayOfBooks[j + 1].getYearPublished()){
+                            swapFlag = true;
+                        }
+                        break;
+                    case 4:
+                        if(arrayOfBooks[j].getPrice() > arrayOfBooks[j + 1].getPrice()){
+                            swapFlag = true;
+                        }
+                        break;
+                    default:
+                        break;
+                }
+                if(swapFlag){
+                    Book temp = arrayOfBooks[j];
+                    arrayOfBooks[j] = arrayOfBooks[j + 1];
+                    arrayOfBooks[j + 1] = temp;
+                    swapFlag = false;
+                }
+            }
+        }
     }
 
 }
