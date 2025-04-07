@@ -5,9 +5,10 @@ public class OOP_assign2 {
     public static void main(String[] args) {
 
         boolean sortedFlag = false;
-        
+
         Book[] arrayOfBooks = new Book[10];
 
+        int sortMethod;
         int sortByChoice;
         int choice = 0;
         int mainChoice;
@@ -39,14 +40,14 @@ public class OOP_assign2 {
                                 + " (Εκδοτικός οίκος) (Αριθμός σελίδων) (Τιμή) ");
 
                         int year = UserInput.getInteger();
-                        
+
                         if (year < 1000 || year > 9999) {
                             do {
                                 System.out.println("Μη έγκυρος αριθμός Έτους Έκδοσης\nΠρέπει να είναι τετραψήφιος ακέραιος");
                                 year = UserInput.getInteger();
                             } while (year < 1000 || year > 9999);
                         }
-                        
+
                         for (;;) {
                             ISBNCheck = UserInput.getString();
                             if (ISBNCheck.equals("0")) {
@@ -194,18 +195,36 @@ public class OOP_assign2 {
                     break;
                 case 4:
                     System.out.println("Επιλογή 4 - Ταξινόμηση Βιβλίων");
-                    do{   
-                    System.out.println("\t Επιλογή Πεδίου Αναζήτησης\n"
+                    do {
+                        System.out.println("\t Επιλογή Πεδίου Αναζήτησης\n"
                                 + "1.\tΌνομα Συγγραφέα\n"
                                 + "2.\tISBN\n"
                                 + "3.\tΈτος κυκλοφορίας\n"
                                 + "4.\tΤιμή Βιβλίων\n"
                                 + "5.\tΕπιστροφη΄στην Αρχική Λίστα Επιλογών\n"
                                 + "\n\tΔώστε Επιλογή(1-5):");
-                    sortByChoice = UserInput.getInteger();
+                        sortByChoice = UserInput.getInteger();
 
-
-                    }while(sortByChoice != 5);    
+                        switch (sortByChoice) {
+                            case 1:
+                            case 2:
+                            case 3:
+                            case 4:
+                                System.out.println("\tΕπιλογή Μεθόδου"
+                                        + "\n1. Bubblesort"
+                                        + "\n2. Ταξινόμηση με Εισαγωγή"
+                                        + "\n3. Ταξινόμηση με Επιλογή"
+                                        + "\n4. Γρήγορη Ταξινόμηση"
+                                        + "\n5. Ταξινόμηση με Συγχώνευση"
+                                        + "\n6. Επιλογή στην Επιλογή Πεδίου Ανάζητησης"
+                                        + "\n\n\tΔώστε Επιλογή (1-6):");
+                                sortMethod = UserInput.getInteger();
+                                break;
+                            default:
+                                System.out.println("Λάθος τιμή προσπαθήστε ξανά");
+                                break;
+                        }
+                    } while (sortByChoice != 5);
                     break;
                 case 5:
                     System.out.println("Επιλογή 5 - Προβολή όλων των βιβλίων");
