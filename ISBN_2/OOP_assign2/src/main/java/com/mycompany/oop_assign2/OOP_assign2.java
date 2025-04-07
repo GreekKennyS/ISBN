@@ -4,6 +4,8 @@ public class OOP_assign2 {
 
     public static void main(String[] args) {
 
+        boolean sortedFlag = false;
+        
         Book[] arrayOfBooks = new Book[10];
 
         int choice = 0;
@@ -32,16 +34,14 @@ public class OOP_assign2 {
                                 + " (Εκδοτικός οίκος) (Αριθμός σελίδων) (Τιμή) ");
 
                         int year = UserInput.getInteger();
-
-                        for (;;) {
-                            if (year < 1000 || year > 9999) {
+                        
+                        if (year < 1000 || year > 9999) {
+                            do {
                                 System.out.println("Μη έγκυρος αριθμός Έτους Έκδοσης\nΠρέπει να είναι τετραψήφιος ακέραιος");
                                 year = UserInput.getInteger();
-                            } else {
-                                break;
-                            }
+                            } while (year < 1000 || year > 9999);
                         }
-
+                        
                         for (;;) {
                             ISBNCheck = UserInput.getString();
                             if (ISBNCheck.equals("0")) {
@@ -53,6 +53,7 @@ public class OOP_assign2 {
                                         UserInput.getInteger(), year,
                                         UserInput.getDouble());
                                 index++;
+                                sortedFlag = false;
                                 break;
                             } else {
                                 System.out.println("Πατήστε 0 για ακύρωση καταχώρησης βιβλίου");
