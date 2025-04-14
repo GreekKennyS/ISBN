@@ -8,7 +8,7 @@ public class OOP_assign2 {
 
         Book[] arrayOfBooks = new Book[10];
 
-        int sortMethod;
+        int sortMethod = 0;
         int sortByChoice;
         int choice = 0;
         int mainChoice;
@@ -210,15 +210,37 @@ public class OOP_assign2 {
                             case 2:
                             case 3:
                             case 4:
+                                do{
                                 System.out.println("\tΕπιλογή Μεθόδου"
                                         + "\n1. Bubblesort"
                                         + "\n2. Ταξινόμηση με Εισαγωγή"
                                         + "\n3. Ταξινόμηση με Επιλογή"
                                         + "\n4. Γρήγορη Ταξινόμηση"
                                         + "\n5. Ταξινόμηση με Συγχώνευση"
-                                        + "\n6. Επιλογή στην Επιλογή Πεδίου Ανάζητησης"
+                                        + "\n6. Επιστροφή στην Επιλογή Πεδίου Ταξινόμησης"
                                         + "\n\n\tΔώστε Επιλογή (1-6):");
                                 sortMethod = UserInput.getInteger();
+
+                                switch(sortMethod){
+                                    case 1:
+                                        MyUtils.bubbleSort(arrayOfBooks,sortByChoice);
+                                        break;
+                                    case 2:
+                                        break;
+                                    case 3:
+                                        break;
+                                    case 4:
+                                        break;
+                                    case 5:
+                                        break;
+                                    case 6:
+                                        System.out.println("Επιστροφή");
+                                        break;
+                                    default:
+                                        System.out.println("Λάθος επιλογή μεθόδου προσπαθήστε ξανά");
+                                        break;
+                                }
+                                }while(sortMethod != 6);
                                 break;
                             default:
                                 System.out.println("Λάθος τιμή προσπαθήστε ξανά");
