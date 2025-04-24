@@ -137,39 +137,39 @@ class MyUtils {
         }
     }
 
-    public static void bubbleSort(Book[] arrayOfBooks,int sortBy){
-        
+    public static void bubbleSort(Book[] arrayOfBooks, int sortBy) {
+
         int n = arrayOfBooks.length;
         boolean swapFlag = false;
-        
-        for(int i = 0; i< n - 1; i++){
-            for(int j = 0; j < i - n - 1; j++){
-                
-                switch(sortBy){
+
+        for (int i = 0; i < n - 1; i++) {
+            for (int j = 0; j < i - n - 1; j++) {
+
+                switch (sortBy) {
                     case 1:
-                        if(arrayOfBooks[j].getAuthor().compareTo(arrayOfBooks[j + 1].getAuthor()) > 0){
+                        if (arrayOfBooks[j].getAuthor().compareTo(arrayOfBooks[j + 1].getAuthor()) > 0) {
                             swapFlag = true;
                         }
                         break;
                     case 2:
-                         if(arrayOfBooks[j].getISBN().compareTo(arrayOfBooks[j + 1].getISBN()) > 0){
+                        if (arrayOfBooks[j].getISBN().compareTo(arrayOfBooks[j + 1].getISBN()) > 0) {
                             swapFlag = true;
-                         }
+                        }
                         break;
                     case 3:
-                        if(arrayOfBooks[j].getYearPublished() > arrayOfBooks[j + 1].getYearPublished()){
+                        if (arrayOfBooks[j].getYearPublished() > arrayOfBooks[j + 1].getYearPublished()) {
                             swapFlag = true;
                         }
                         break;
                     case 4:
-                        if(arrayOfBooks[j].getPrice() > arrayOfBooks[j + 1].getPrice()){
+                        if (arrayOfBooks[j].getPrice() > arrayOfBooks[j + 1].getPrice()) {
                             swapFlag = true;
                         }
                         break;
                     default:
                         break;
                 }
-                if(swapFlag){
+                if (swapFlag) {
                     Book temp = arrayOfBooks[j];
                     arrayOfBooks[j] = arrayOfBooks[j + 1];
                     arrayOfBooks[j + 1] = temp;
@@ -177,6 +177,52 @@ class MyUtils {
                 }
             }
         }
+    }
+
+    public static void insertionSort(Book[] arrayOfBooks, int sortBy) {
+
+        for (int i = 1; i < arrayOfBooks.length; i++) {
+            int position = i;
+            
+            switch (sortBy) {
+                case 1:
+                    String currentAuthor = arrayOfBooks[i].getAuthor();
+                    while(position > 0 && arrayOfBooks[position - 1].getISBN().compareTo(currentAuthor) > 0){
+                        arrayOfBooks[position] = arrayOfBooks[position - 1];
+                        position--;
+                    }
+                    arrayOfBooks[position].setISBN(currentAuthor);
+                    break;
+                case 2:
+                    String currentISBN = arrayOfBooks[i].getISBN();
+                    while(position > 0 && arrayOfBooks[position - 1].getISBN().compareTo(currentISBN) > 0){
+                        arrayOfBooks[position] = arrayOfBooks[position - 1];
+                        position--;
+                    }
+                    arrayOfBooks[position].setISBN(currentISBN);
+                    break;
+                case 3:
+                    int currentYear = arrayOfBooks[i].getYearPublished();
+                    while(position>0 && arrayOfBooks[position - 1].getYearPublished() > currentYear){
+                        arrayOfBooks[position] = arrayOfBooks[position - 1];
+                        position--;
+                    }
+                    arrayOfBooks[position].setYearPublished(currentYear);
+                    break;
+                case 4:
+                    double currentPrice = arrayOfBooks[i].getPrice();
+                    while(position > 0 && arrayOfBooks[position - 1].getPrice() > currentPrice){
+                        arrayOfBooks[position] = arrayOfBooks[position - 1];
+                        position--;
+                    }
+                    arrayOfBooks[position].setPrice(currentPrice);
+                    break;
+                default:
+                    break;
+            }
+
+        }
+
     }
 
 }
