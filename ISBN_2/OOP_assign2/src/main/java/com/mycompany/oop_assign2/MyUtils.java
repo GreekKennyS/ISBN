@@ -180,18 +180,18 @@ class MyUtils {
     }
 
     public static void insertionSort(Book[] arrayOfBooks, int sortBy) {
-
+        Book currentBook = new Book();
         for (int i = 1; i < arrayOfBooks.length; i++) {
             int position = i;
 
             switch (sortBy) {
                 case 1:
-                    String currentAuthor = arrayOfBooks[i].getAuthor();
-                    while (position > 0 && arrayOfBooks[position - 1].getISBN().compareTo(currentAuthor) > 0) {
+                     currentBook = arrayOfBooks[i];
+                    while (position > 0 && arrayOfBooks[position - 1].getISBN().compareTo(currentBook.getISBN()) > 0) {
                         arrayOfBooks[position] = arrayOfBooks[position - 1];
                         position--;
                     }
-                    arrayOfBooks[position].setISBN(currentAuthor);
+                    arrayOfBooks[position]= currentBook;
                     break;
                 case 2:
                     String currentISBN = arrayOfBooks[i].getISBN();
@@ -202,20 +202,20 @@ class MyUtils {
                     arrayOfBooks[position].setISBN(currentISBN);
                     break;
                 case 3:
-                    int currentYear = arrayOfBooks[i].getYearPublished();
-                    while (position > 0 && arrayOfBooks[position - 1].getYearPublished() > currentYear) {
+                    currentBook = arrayOfBooks[i];
+                    while (position > 0 && arrayOfBooks[position - 1].getYearPublished() > currentBook.getYearPublished()) {
                         arrayOfBooks[position] = arrayOfBooks[position - 1];
                         position--;
                     }
-                    arrayOfBooks[position].setYearPublished(currentYear);
+                    arrayOfBooks[position]= currentBook;
                     break;
                 case 4:
-                    double currentPrice = arrayOfBooks[i].getPrice();
-                    while (position > 0 && arrayOfBooks[position - 1].getPrice() > currentPrice) {
+                    currentBook = arrayOfBooks[i];
+                    while (position > 0 && arrayOfBooks[position - 1].getPrice() > currentBook.getPrice()) {
                         arrayOfBooks[position] = arrayOfBooks[position - 1];
                         position--;
                     }
-                    arrayOfBooks[position].setPrice(currentPrice);
+                    arrayOfBooks[position]= currentBook;
                     break;
                 default:
                     break;
@@ -226,9 +226,8 @@ class MyUtils {
     }
 
     public static void selectionSort(Book[] arrayOfBooks, int sortBy) {
-        int min, temp;
-        String tempString;
-        double tempDouble;
+        int min;
+        Book tempBook = new Book();
         switch (sortBy) {
             case 1:
                 for (int i = 0; i < arrayOfBooks.length - 1; i++) {
@@ -238,9 +237,9 @@ class MyUtils {
                             min = j;
                         }
                     }
-                    tempString = arrayOfBooks[min].getAuthor();
+                    tempBook = arrayOfBooks[min];
                     arrayOfBooks[min] = arrayOfBooks[i];
-                    arrayOfBooks[i].setAuthor(tempString);
+                    arrayOfBooks[i] = tempBook;
                 }
                 break;
             case 2:
@@ -251,9 +250,9 @@ class MyUtils {
                             min = j;
                         }
                     }
-                    tempString = arrayOfBooks[min].getISBN();
+                    tempBook = arrayOfBooks[min];
                     arrayOfBooks[min] = arrayOfBooks[i];
-                    arrayOfBooks[i].setISBN(tempString);
+                    arrayOfBooks[i] = tempBook;
                 }
                 break;
             case 3:
@@ -264,9 +263,9 @@ class MyUtils {
                             min = j;
                         }
                     }
-                    temp = arrayOfBooks[min].getYearPublished();
+                    tempBook = arrayOfBooks[min];
                     arrayOfBooks[min] = arrayOfBooks[i];
-                    arrayOfBooks[i].setYearPublished(temp);
+                    arrayOfBooks[i]= tempBook;
                 }
                 break;
             case 4:
@@ -277,9 +276,9 @@ class MyUtils {
                             min = j;
                         }
                     }
-                    tempDouble = arrayOfBooks[min].getPrice();
+                    tempBook = arrayOfBooks[min];
                     arrayOfBooks[min] = arrayOfBooks[i];
-                    arrayOfBooks[i].setPrice(tempDouble);
+                    arrayOfBooks[i] = tempBook;
                 }
                 break;
             default:
