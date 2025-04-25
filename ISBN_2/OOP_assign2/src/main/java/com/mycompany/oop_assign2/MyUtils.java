@@ -295,7 +295,7 @@ class MyUtils {
             int pivot_index = partition(arrayOfBooks, f, l, sortBy);
             qSort(arrayOfBooks, f, pivot_index - 1, sortBy);
             qSort(arrayOfBooks, pivot_index + 1, l, sortBy);
-            
+
         }
     }
 
@@ -371,4 +371,84 @@ class MyUtils {
         arrayOfBooks[y] = temp;
     }
 
+    
+    public static void mergeSort(Book[] arrayOfBooks, int sortBy) {
+        mSort(arrayOfBooks, 0, arrayOfBooks.length - 1, sortBy);
+    }
+
+    public static void mSort(Book[] arrayOfBooks, int f, int l, int sortBy){
+        if (f == 1) return;
+        int mid = (f+1)/2;
+        mSort(arrayOfBooks, f, mid, sortBy);
+        mSort(arrayOfBooks, mid + 1, l, sortBy);
+        merge(arrayOfBooks, f, l, mid, sortBy);
+    }
+    
+    public static void merge(Book[] arrayOfBooks, int f, int l, int mid, int sortBy){
+        
+        int n = l-f+1;
+        
+        Book[] b = new Book[n];
+        
+        int i1 = f, i2= mid + 1;
+        int j = 0;
+        
+        while(i1 <= mid && i2 <= l){
+            switch(sortBy){
+                case 1:
+                    if(arrayOfBooks[i1].getAuthor().compareTo(arrayOfBooks[i2].getAuthor()) <= 0){
+                        b[j] = arrayOfBooks[i1];
+                        i1++;
+                    }else{
+                        b[j] = arrayOfBooks[i2];
+                        i2++;
+                    }
+                    break;
+                case 2:
+                    if(arrayOfBooks[i1].getISBN().compareTo(arrayOfBooks[i2].getAuthor()) <= 0){
+                        b[j] = arrayOfBooks[i1];
+                        i1++;
+                    }else{
+                        b[j] = arrayOfBooks[i2];
+                        i2++;
+                    }
+                    break;
+                case 3:
+                    if(arrayOfBooks[i1].getYearPublished() <= arrayOfBooks[i2].getYearPublished()){
+                        b[j] = arrayOfBooks[i1];
+                        i1++;
+                    }else{
+                        b[j] = arrayOfBooks[i2];
+                        i2++;
+                    }
+                    break;
+                case 4:
+                    if(arrayOfBooks[i1].getPrice() <= arrayOfBooks[i2].getPrice()){
+                        b[j] = arrayOfBooks[i1];
+                        i1++;
+                    }else{
+                        b[j] = arrayOfBooks[i2];
+                        i2++;
+                    }
+                    break;
+            }
+            j++;
+        }
+        
+        while(i1 <= mid){
+            b[j] = arrayOfBooks[i1];
+            i1++;
+            j++;
+        }
+        
+        while(i2 <= l){
+            b[j] = arrayOfBooks[i2];
+            i2++;
+            j++;
+        }
+        
+        for(j = 0; j< n; j++){
+            arrayOfBooks[f + j] = b[j];
+        }
+    }
 }

@@ -235,6 +235,7 @@ public class OOP_assign2 {
                                         MyUtils.quickSort(arrayOfBooks, sortByChoice);
                                         break;
                                     case 5:
+                                        MyUtils.mergeSort(arrayOfBooks, sortByChoice);
                                         break;
                                     case 6:
                                         System.out.println("Επιστροφή");
