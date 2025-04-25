@@ -232,6 +232,7 @@ public class OOP_assign2 {
                                         MyUtils.selectionSort(arrayOfBooks, sortByChoice);
                                         break;
                                     case 4:
+                                        MyUtils.quickSort(arrayOfBooks, sortByChoice);
                                         break;
                                     case 5:
                                         break;

@@ -302,13 +302,13 @@ class MyUtils {
     public static int partition(Book[] arrayOfBooks, int f, int l, int sortBy) {
         int retValue = 0;
         int lowerLimit = f;
-        int mid = (f + 1) / 2;
+        int mid = (f + l) / 2;
         swap(arrayOfBooks, f, mid);
 
         Book pivot = arrayOfBooks[f];
         f++;
 
-        while (f < 1) {
+        while (f < l) {
             switch (sortBy) {
                 case 1:
                     while (arrayOfBooks[f].getAuthor().compareTo(pivot.getAuthor()) <= 0 && f < l) {
@@ -355,7 +355,7 @@ class MyUtils {
                     break;
             }
 
-            if (f < 1) {
+            if (f < l) {
                 swap(arrayOfBooks, f, l);
             }
         }
