@@ -7,10 +7,10 @@ public class OOP_assign2 {
         Book[] arrayOfBooks = new Book[10];
 
         int sortMethod = 0;
-        int sortByChoice;
+        int sortByChoice = 0;
         int choice = 0;
-        int mainChoice;
-        int searchChoice;
+        int mainChoice = 0;
+        int searchChoice = 0;
         int index = 0;
         int tempYear;
         boolean isSorted = false;
