@@ -186,12 +186,12 @@ class MyUtils {
 
             switch (sortBy) {
                 case 1:
-                     currentBook = arrayOfBooks[i];
+                    currentBook = arrayOfBooks[i];
                     while (position > 0 && arrayOfBooks[position - 1].getISBN().compareTo(currentBook.getISBN()) > 0) {
                         arrayOfBooks[position] = arrayOfBooks[position - 1];
                         position--;
                     }
-                    arrayOfBooks[position]= currentBook;
+                    arrayOfBooks[position] = currentBook;
                     break;
                 case 2:
                     String currentISBN = arrayOfBooks[i].getISBN();
@@ -207,7 +207,7 @@ class MyUtils {
                         arrayOfBooks[position] = arrayOfBooks[position - 1];
                         position--;
                     }
-                    arrayOfBooks[position]= currentBook;
+                    arrayOfBooks[position] = currentBook;
                     break;
                 case 4:
                     currentBook = arrayOfBooks[i];
@@ -215,7 +215,7 @@ class MyUtils {
                         arrayOfBooks[position] = arrayOfBooks[position - 1];
                         position--;
                     }
-                    arrayOfBooks[position]= currentBook;
+                    arrayOfBooks[position] = currentBook;
                     break;
                 default:
                     break;
@@ -265,7 +265,7 @@ class MyUtils {
                     }
                     tempBook = arrayOfBooks[min];
                     arrayOfBooks[min] = arrayOfBooks[i];
-                    arrayOfBooks[i]= tempBook;
+                    arrayOfBooks[i] = tempBook;
                 }
                 break;
             case 4:
@@ -284,6 +284,91 @@ class MyUtils {
             default:
                 break;
         }
+    }
+
+    public static void quickSort(Book[] arrayOfBooks, int sortBy) {
+        qSort(arrayOfBooks, 0, arrayOfBooks.length - 1, sortBy);
+    }
+
+    public static void qSort(Book[] arrayOfBooks, int f, int l, int sortBy) {
+        if (l - f > 0) {
+            int pivot_index = partition(arrayOfBooks, f, l, sortBy);
+            qSort(arrayOfBooks, f, pivot_index - 1, sortBy);
+            qSort(arrayOfBooks, pivot_index + 1, l, sortBy);
+            
+        }
+    }
+
+    public static int partition(Book[] arrayOfBooks, int f, int l, int sortBy) {
+        int retValue = 0;
+        int lowerLimit = f;
+        int mid = (f + 1) / 2;
+        swap(arrayOfBooks, f, mid);
+
+        Book pivot = arrayOfBooks[f];
+        f++;
+
+        while (f < 1) {
+            switch (sortBy) {
+                case 1:
+                    while (arrayOfBooks[f].getAuthor().compareTo(pivot.getAuthor()) <= 0 && f < l) {
+                        f++;
+                    }
+                    break;
+                case 2:
+                    while (arrayOfBooks[f].getISBN().compareTo(pivot.getISBN()) <= 0 && f < l) {
+                        f++;
+                    }
+                    break;
+                case 3:
+                    while (arrayOfBooks[f].getYearPublished() <= pivot.getYearPublished() && f < l) {
+                        f++;
+                    }
+                    break;
+                case 4:
+                    while (arrayOfBooks[f].getPrice() <= pivot.getPrice() && f < l) {
+                        f++;
+                    }
+                    break;
+            }
+
+            switch (sortBy) {
+                case 1:
+                    while (arrayOfBooks[f].getAuthor().compareTo(pivot.getAuthor()) > 0 && l > lowerLimit) {
+                        l--;
+                    }
+                    break;
+                case 2:
+                    while (arrayOfBooks[f].getISBN().compareTo(pivot.getISBN()) > 0 && l > lowerLimit) {
+                        l--;
+                    }
+                    break;
+                case 3:
+                    while (arrayOfBooks[f].getYearPublished() > pivot.getYearPublished() && l > lowerLimit) {
+                        l--;
+                    }
+                    break;
+                case 4:
+                    while (arrayOfBooks[f].getPrice() > pivot.getPrice() && l > lowerLimit) {
+                        l--;
+                    }
+                    break;
+            }
+
+            if (f < 1) {
+                swap(arrayOfBooks, f, l);
+            }
+        }
+
+        swap(arrayOfBooks, f, l);
+
+        return f;
+    }
+
+    public static void swap(Book[] arrayOfBooks, int x, int y) {
+        Book temp = arrayOfBooks[x];
+        arrayOfBooks[x] = arrayOfBooks[y];
+        arrayOfBooks[y] = temp;
     }
 
 }
