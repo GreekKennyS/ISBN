@@ -11,7 +11,6 @@ public class OOP_assign2 {
         int choice = 0;
         int mainChoice;
         int searchChoice;
-        int sortChoice;
         int index = 0;
         int tempYear;
         boolean isSorted = false;
@@ -26,9 +25,9 @@ public class OOP_assign2 {
                     + "5.\tΕμφάνιση στοιχείων όλων των βιβλίων\n"
                     + "6.\tΤέλος\n"
                     + "\n\tΔώστε Επιλογή (1-6):");
-            choice = UserInput.getInteger();
+            mainChoice = UserInput.getInteger();
 
-            switch (choice) {
+            switch (mainChoice) {
                 case 1:
                     System.out.println("Επιλογή 1 - Εισαγωγή στοιχείων βιβλίου");
 
@@ -80,10 +79,10 @@ public class OOP_assign2 {
                                     + "2.\tΈτος κυκλοφορίας\n"
                                     + "3.\tΕπιστροφή στην Αρχική Λίστα Επιλογών\n"
                                     + "\n\tΔώστε Επιλογή(1-3):");
-                            choice = UserInput.getInteger();
+                            searchChoice = UserInput.getInteger();
 
                             if (isSorted) {
-                                switch (choice) {
+                                switch (searchChoice) {
                                     case 1:
                                         System.out.println("Δώστε τιμή ISBN: ");
                                         tempISBN = UserInput.getString();
@@ -110,7 +109,7 @@ public class OOP_assign2 {
                                         break;
                                 }
                             } else {
-                                switch (choice) {
+                                switch (searchChoice) {
                                     case 1:
                                         System.out.println("Δώστε τιμή ISBN: ");
                                         tempISBN = UserInput.getString();
