@@ -1,4 +1,3 @@
-
 public class Dictionary extends Book {
 
     private int numEntries;
