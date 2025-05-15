@@ -219,7 +219,7 @@ public class OOP_assign3 {
                                         + "2.\tISBN\n"
                                         + "3.\tΈτος κυκλοφορίας\n"
                                         + "4.\tΤιμή Βιβλίων\n"
-                                        + "5.\tΕπιστροφη΄στην Αρχική Λίστα Επιλογών\n"
+                                        + "5.\tΕπιστροφή στις Επιλογές Επεξεργασίας Βιβλίων\n"
                                         + "\n\tΔώστε Επιλογή(1-5):");
                                 sortByChoice = UserInput.getInteger();
 
@@ -311,7 +311,16 @@ public class OOP_assign3 {
                             + "\n\tΔώστε Επιλογή(1-5):");
                     salesChoice = UserInput.getInteger();
                     switch(salesChoice){
-                        
+                        case 1:
+                            break;
+                        case 2:
+                            break;
+                        case 3:
+                            break;
+                        case 4:
+                            break;
+                        case 5:
+                            break;
                     }
                     break;
                 case 4:

@@ -24,14 +24,22 @@ public class DaySales {
         System.out.println("Το βιβλίο με "+ISBN+" δεν βρέθηκε");
     }
     
-    public double calculateTotalSales(){
-        double total = 0;
+    public void calculateTotalSales(){
+        double scienceTotal = 0,dictionaryTotal = 0;
         for(int i = 0; i < books.length; i++){
             if(books[i] != null){
-                total += books[i].getPrice() * sales[i];
+                if(books[i] instanceof Science){
+                    scienceTotal += books[i].getPrice() * sales[i];
+                }else if (books[i] instanceof Dictionary){
+                    dictionaryTotal += books[i].getPrice() * sales[i];
+                }
             }
         }
-        return total;
+        System.out.println("Επιστημονικά βιβλία συνολική αξία: "+scienceTotal+" Euro");
+        System.out.println("Λεξικά βιβλία συνολική αξία: "+dictionaryTotal+" Euro");
+        System.out.println("Συνολικά Βιβλία συνολική αξία: "+scienceTotal+dictionaryTotal+" Euro");
+        
+        
     }
     
     public Book getBestSeller(){
@@ -53,11 +61,13 @@ public class DaySales {
         
         for(int i = 0; i < books.length; i++){
             if(books[i] != null && sales[i] > 0){
-                String bookType = "BookTypeNull";
+                String bookType;
                 if(books[i] instanceof Science){
-                    bookType = "Science";
+                    bookType = "Επιστημονικά";
+                }else if(books[i] instanceof Dictionary){
+                    bookType = "Λεξικά";
                 }else{
-                    bookType = "Dictionary";
+                    bookType = "Άγνωστο";
                 }
                 System.out.println(books[i].getISBN()+"\t"+bookType+"\t"+sales[i]+"\n");
             }
