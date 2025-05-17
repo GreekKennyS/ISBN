@@ -4,7 +4,8 @@ public class OOP_assign3 {
     public static void main(String[] args) {
 
         Book[] arrayOfBooks = new Book[10];
-
+        DaySales daySales = new DaySales(arrayOfBooks);
+        
         int sortMethod = 0;
         int sortByChoice = 0;
         int choice = 0;
@@ -125,6 +126,10 @@ public class OOP_assign3 {
 
                     break;
                 case 2:
+                        if(index == 0){
+                        System.out.println("Δεν έχει εισαχθεί κανένα βιβλίο");
+                        break;
+                    }
                     System.out.println("\t Επιλογές Επεξεργασίας Βιβλίων\n"
                             + "1. Αναζήτηση βιβλίου\n"
                             + "2. Ταξινόμηση βιβλίων\n"
@@ -278,7 +283,7 @@ public class OOP_assign3 {
 
                             break;
                         case 3:
-                            System.out.println("Επιλογή 2 - Φιλτράρισμα βιβλίων βάσει τιμής");
+                            System.out.println("Επιλογή 3 - Φιλτράρισμα βιβλίων βάσει τιμής");
                             if (index != 0) {
                                 System.out.println("Δώστε την Ελάχιστη τιμή: ");
 
@@ -300,8 +305,12 @@ public class OOP_assign3 {
                                 }
                             }
                             break;
-                    }
+                    }                    
                 case 3:
+                    if(index == 0){
+                        System.out.println("Δεν έχει εισαχθεί κανένα βιβλίο");
+                        break;
+                    }
                     System.out.println("\t Επιλογές Διαχείρισης Πωλήσεων"
                             + "\n1. Καταχώριση Νέας Πώλησης Βιβλίου"
                             + "\n2. Υπολογισμός και εμφάνιση αξίας πωλήσεων"
@@ -312,12 +321,18 @@ public class OOP_assign3 {
                     salesChoice = UserInput.getInteger();
                     switch(salesChoice){
                         case 1:
+                            System.out.println("Εισάγετε ISBN: ");
+                            String sellISBN = UserInput.getString();
+                            daySales.sellBook(sellISBN, index);
                             break;
                         case 2:
+                            daySales.calculateTotalSales();
                             break;
                         case 3:
+                            System.out.println("Best-Seller: "+daySales.getBestSeller());
                             break;
                         case 4:
+                            daySales.displaySales();
                             break;
                         case 5:
                             break;
@@ -330,7 +345,6 @@ public class OOP_assign3 {
                     System.out.println("Λάθος επιλογή! Προσπαθήστε ξανά");
                     break;
             }
-
-        } while (choice != 5);
+        } while (choice != 4);
     }
 }
