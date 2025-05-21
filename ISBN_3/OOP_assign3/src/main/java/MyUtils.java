@@ -143,7 +143,7 @@ class MyUtils {
         boolean swapFlag = false;
 
         for (int i = 0; i < n - 1; i++) {
-            for (int j = 0; j < i - n - 1; j++) {
+            for (int j = 0; j < n - i - 1; j++) {
 
                 switch (sortBy) {
                     case 1:
@@ -377,8 +377,8 @@ class MyUtils {
     }
 
     public static void mSort(Book[] arrayOfBooks, int f, int l, int sortBy){
-        if (f == 1) return;
-        int mid = (f+1)/2;
+        if (f >= l) return;
+        int mid = (f+l)/2;
         mSort(arrayOfBooks, f, mid, sortBy);
         mSort(arrayOfBooks, mid + 1, l, sortBy);
         merge(arrayOfBooks, f, l, mid, sortBy);
@@ -394,6 +394,8 @@ class MyUtils {
         int j = 0;
         
         while(i1 <= mid && i2 <= l){
+            if(arrayOfBooks[i1] == null){i1++; continue;}
+            if(arrayOfBooks[i2] == null){i2++; continue;}
             switch(sortBy){
                 case 1:
                     if(arrayOfBooks[i1].getAuthor().compareTo(arrayOfBooks[i2].getAuthor()) <= 0){
@@ -405,7 +407,7 @@ class MyUtils {
                     }
                     break;
                 case 2:
-                    if(arrayOfBooks[i1].getISBN().compareTo(arrayOfBooks[i2].getAuthor()) <= 0){
+                    if(arrayOfBooks[i1].getISBN().compareTo(arrayOfBooks[i2].getISBN()) <= 0){
                         b[j] = arrayOfBooks[i1];
                         i1++;
                     }else{

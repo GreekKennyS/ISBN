@@ -24,7 +24,7 @@ public class Dictionary extends Book {
 
     @Override
     public String toString() {
-        return "Dictionary{" + "numEntries=" + numEntries + '}';
+        return "Dictionary{" + "Τίτλος βιβλίου: " + getTitle() + ", Συγγραφέας: " + getAuthor() + ", ISBN: " + getISBN() + ", Εκδοτικός οίκος: " + getPublisher() + ", Αριθμός σελίδων: " + getNumberPages() + ", Έτος έκδοσης: " + getYearPublished() + ", Τιμή: " + getPrice() + ", numEntries = " + numEntries + '}';
     }
 
 }

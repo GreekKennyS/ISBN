@@ -37,7 +37,7 @@ public class DaySales {
         }
         System.out.println("Επιστημονικά βιβλία συνολική αξία: "+scienceTotal+" Euro");
         System.out.println("Λεξικά βιβλία συνολική αξία: "+dictionaryTotal+" Euro");
-        System.out.println("Συνολικά Βιβλία συνολική αξία: "+scienceTotal+dictionaryTotal+" Euro");
+        System.out.println("Συνολικά Βιβλία συνολική αξία: "+(scienceTotal+dictionaryTotal)+" Euro");
         
         
     }
@@ -56,20 +56,22 @@ public class DaySales {
     
     public void displaySales(){
 
-        System.out.println("ISBN\tΕίδος Βιβλίου\tΠλήθος Αντιτύπων\n"
+        System.out.println("ISBN\t\tΕίδος Βιβλίου\t\tΠλήθος Αντιτύπων\n"
                 + "------------------------------------------------------------------------------\n");
         
         for(int i = 0; i < books.length; i++){
             if(books[i] != null && sales[i] > 0){
                 String bookType;
                 if(books[i] instanceof Science){
-                    bookType = "Επιστημονικά";
+                    bookType = "Επιστημονικό";
+                System.out.println(books[i].getISBN()+"\t"+bookType+"\t\t\t"+sales[i]+"\n");
                 }else if(books[i] instanceof Dictionary){
-                    bookType = "Λεξικά";
+                    bookType = "Λεξικό";
+                System.out.println(books[i].getISBN()+"\t"+bookType+"\t\t\t\t"+sales[i]+"\n");
                 }else{
                     bookType = "Άγνωστο";
+                System.out.println(books[i].getISBN()+"\t"+bookType+"\t\t\t\t"+sales[i]+"\n");
                 }
-                System.out.println(books[i].getISBN()+"\t"+bookType+"\t"+sales[i]+"\n");
             }
         }
     }

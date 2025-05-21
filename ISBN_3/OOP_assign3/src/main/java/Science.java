@@ -21,7 +21,7 @@ public class Science extends Book{
 
     @Override
     public String toString() {
-        return "Science{" + "scientificField=" + scientificField + '}';
+        return "Science{" + "Τίτλος βιβλίου: " + getTitle() + ", Συγγραφέας: " + getAuthor() + ", ISBN: " + getISBN() + ", Εκδοτικός οίκος: " + getPublisher() + ", Αριθμός σελίδων: " + getNumberPages() + ", Έτος έκδοσης: " + getYearPublished() + ", Τιμή: " + getPrice() + ", scientificField = " + scientificField + '}';
     }
     
 }
