@@ -6,7 +6,7 @@ public class OOP_assign3 {
         Book[] arrayOfBooks = new Book[10];
         DaySales daySales = new DaySales(arrayOfBooks);
 
-        boolean flagSort = false;
+        boolean flagSort = false, flagSortMenu = false;
         int sortMethod = 0;
         int sortByChoice = 0;
         int choice = 0;
@@ -141,16 +141,16 @@ public class OOP_assign3 {
                         System.out.println("Δεν έχει εισαχθεί κανένα βιβλίο");
                         break;
                     }
-                    do{
-                    System.out.println("\t Επιλογές Επεξεργασίας Βιβλίων\n"
-                            + "1. Αναζήτηση βιβλίου\n"
-                            + "2. Ταξινόμηση βιβλίων\n"
-                            + "3. Εμφάνιση στοιχείων βιβλίων με τιμή μεταξύ κάποιων ορίων\n"
-                            + "4. Εμφάνιση στοιχείων όλων των βιβλίων\n"
-                            + "5. Επιστροφή στην Αρχική Λίστα Επιλογών\n"
-                            + "\n\tΔώστε Επιλογή (1-5):");
-                    secondChoice = UserInput.getInteger();
-                    }while(secondChoice != 1 && secondChoice != 2 && secondChoice != 3 && secondChoice != 4 && secondChoice != 5 );
+                    do {
+                        System.out.println("\t Επιλογές Επεξεργασίας Βιβλίων\n"
+                                + "1. Αναζήτηση βιβλίου\n"
+                                + "2. Ταξινόμηση βιβλίων\n"
+                                + "3. Εμφάνιση στοιχείων βιβλίων με τιμή μεταξύ κάποιων ορίων\n"
+                                + "4. Εμφάνιση στοιχείων όλων των βιβλίων\n"
+                                + "5. Επιστροφή στην Αρχική Λίστα Επιλογών\n"
+                                + "\n\tΔώστε Επιλογή (1-5):");
+                        secondChoice = UserInput.getInteger();
+                    } while (secondChoice != 1 && secondChoice != 2 && secondChoice != 3 && secondChoice != 4 && secondChoice != 5);
                     switch (secondChoice) {
                         case 1:
                             System.out.println("Επιλογή 1 - Αναζήτηση βιβλίου");
@@ -263,42 +263,55 @@ public class OOP_assign3 {
                                                         MyUtils.bubbleSort(arrayOfBooks, sortByChoice);
                                                         isSorted = true;
                                                         flagSort = true;
+                                                        flagSortMenu = true;
                                                         break;
                                                     case 2:
                                                         MyUtils.insertionSort(arrayOfBooks, sortByChoice);
                                                         isSorted = true;
                                                         flagSort = true;
+                                                        flagSortMenu = true;
                                                         break;
                                                     case 3:
                                                         MyUtils.selectionSort(arrayOfBooks, sortByChoice);
                                                         isSorted = true;
                                                         flagSort = true;
+                                                        flagSortMenu = true;
+
                                                         break;
                                                     case 4:
                                                         MyUtils.quickSort(arrayOfBooks, sortByChoice);
                                                         isSorted = true;
                                                         flagSort = true;
+                                                        flagSortMenu = true;
+
                                                         break;
                                                     case 5:
                                                         MyUtils.mergeSort(arrayOfBooks, sortByChoice);
                                                         isSorted = true;
                                                         flagSort = true;
+                                                        flagSortMenu = true;
+
                                                         break;
                                                     case 6:
                                                         System.out.println("Επιστροφή");
+                                                        flagSort = true;
+                                                        flagSortMenu = true;
                                                         break;
                                                     default:
                                                         System.out.println("Λάθος επιλογή μεθόδου προσπαθήστε ξανά");
                                                         break;
                                                 }
                                             }
-                                        } while (sortMethod < 1 || sortMethod > 5);
+                                        } while (!flagSort);
+                                        break;
+                                    case 5:
+                                        flagSortMenu = true;
                                         break;
                                     default:
                                         System.out.println("Λάθος τιμή προσπαθήστε ξανά");
                                         break;
                                 }
-                            } while (sortByChoice != 5 || flagSort == true);
+                            } while (!flagSortMenu);
 
                             break;
 
@@ -353,7 +366,11 @@ public class OOP_assign3 {
                                 daySales.calculateTotalSales();
                                 break;
                             case 3:
-                                System.out.println("Best-Seller: " + daySales.getBestSeller());
+                                if (daySales.getBestSeller() == null) {
+                                    System.out.println("Δεν έχει καταχωρηθεί καμία Πώληση Βιβλίου");
+                                } else {
+                                    System.out.println("Best-Seller: " + daySales.getBestSeller());
+                                }
                                 break;
                             case 4:
                                 daySales.displaySales();

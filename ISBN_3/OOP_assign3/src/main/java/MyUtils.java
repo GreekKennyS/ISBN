@@ -1,5 +1,4 @@
 
-
 class MyUtils {
 
     public static Book seqSearch(String ISBN, Book[] arrayOfBooks) {
@@ -144,7 +143,9 @@ class MyUtils {
 
         for (int i = 0; i < n - 1; i++) {
             for (int j = 0; j < n - i - 1; j++) {
-
+                if (arrayOfBooks[j] == null || arrayOfBooks[j + 1] == null) {
+                    continue;
+                }
                 switch (sortBy) {
                     case 1:
                         if (arrayOfBooks[j].getAuthor().compareTo(arrayOfBooks[j + 1].getAuthor()) > 0) {
@@ -180,8 +181,12 @@ class MyUtils {
     }
 
     public static void insertionSort(Book[] arrayOfBooks, int sortBy) {
-        Book currentBook = new Book();
         for (int i = 1; i < arrayOfBooks.length; i++) {
+            if (arrayOfBooks[i] == null) {
+                continue;
+            }
+
+            Book currentBook = new Book();
             int position = i;
 
             switch (sortBy) {
@@ -233,52 +238,60 @@ class MyUtils {
                 for (int i = 0; i < arrayOfBooks.length - 1; i++) {
                     min = i;
                     for (int j = i + 1; j < arrayOfBooks.length; j++) {
-                        if (arrayOfBooks[j].getAuthor().compareTo(arrayOfBooks[min].getAuthor()) < 0) {
+                        if (arrayOfBooks[j] != null && arrayOfBooks[min] != null && arrayOfBooks[j].getAuthor().compareTo(arrayOfBooks[min].getAuthor()) < 0) {
                             min = j;
                         }
                     }
-                    tempBook = arrayOfBooks[min];
-                    arrayOfBooks[min] = arrayOfBooks[i];
-                    arrayOfBooks[i] = tempBook;
+                    if (arrayOfBooks[min] != null && arrayOfBooks[i] != null) {
+                        tempBook = arrayOfBooks[min];
+                        arrayOfBooks[min] = arrayOfBooks[i];
+                        arrayOfBooks[i] = tempBook;
+                    }
                 }
                 break;
             case 2:
                 for (int i = 0; i < arrayOfBooks.length - 1; i++) {
                     min = i;
                     for (int j = i + 1; j < arrayOfBooks.length; j++) {
-                        if (arrayOfBooks[j].getISBN().compareTo(arrayOfBooks[min].getISBN()) < 0) {
+                        if (arrayOfBooks[j] != null && arrayOfBooks[min] != null && arrayOfBooks[j].getISBN().compareTo(arrayOfBooks[min].getISBN()) < 0) {
                             min = j;
                         }
                     }
-                    tempBook = arrayOfBooks[min];
-                    arrayOfBooks[min] = arrayOfBooks[i];
-                    arrayOfBooks[i] = tempBook;
+                    if (arrayOfBooks[min] != null && arrayOfBooks[i] != null) {
+                        tempBook = arrayOfBooks[min];
+                        arrayOfBooks[min] = arrayOfBooks[i];
+                        arrayOfBooks[i] = tempBook;
+                    }
                 }
                 break;
             case 3:
                 for (int i = 0; i < arrayOfBooks.length - 1; i++) {
                     min = i;
                     for (int j = i + 1; j < arrayOfBooks.length; j++) {
-                        if (arrayOfBooks[j].getYearPublished() < arrayOfBooks[min].getYearPublished()) {
+                        if (arrayOfBooks[j] != null && arrayOfBooks[min] != null && arrayOfBooks[j].getYearPublished() < arrayOfBooks[min].getYearPublished()) {
                             min = j;
                         }
                     }
-                    tempBook = arrayOfBooks[min];
-                    arrayOfBooks[min] = arrayOfBooks[i];
-                    arrayOfBooks[i] = tempBook;
+                    if (arrayOfBooks[min] != null && arrayOfBooks[i] != null) {
+                        tempBook = arrayOfBooks[min];
+                        arrayOfBooks[min] = arrayOfBooks[i];
+                        arrayOfBooks[i] = tempBook;
+                    }
                 }
                 break;
             case 4:
                 for (int i = 0; i < arrayOfBooks.length - 1; i++) {
                     min = i;
                     for (int j = i + 1; j < arrayOfBooks.length; j++) {
-                        if (arrayOfBooks[j].getPrice() < arrayOfBooks[min].getPrice()) {
+                        if (arrayOfBooks[j] != null && arrayOfBooks[min] != null && arrayOfBooks[j].getPrice() < arrayOfBooks[min].getPrice()) {
                             min = j;
                         }
                     }
-                    tempBook = arrayOfBooks[min];
-                    arrayOfBooks[min] = arrayOfBooks[i];
-                    arrayOfBooks[i] = tempBook;
+                    if (arrayOfBooks[min] != null && arrayOfBooks[i] != null) {
+                        tempBook = arrayOfBooks[min];
+                        arrayOfBooks[min] = arrayOfBooks[i];
+                        arrayOfBooks[i] = tempBook;
+                    }
                 }
                 break;
             default:
@@ -303,12 +316,32 @@ class MyUtils {
         int retValue = 0;
         int lowerLimit = f;
         int mid = (f + l) / 2;
+
+        if (arrayOfBooks[mid] == null) {
+            while (mid < l && arrayOfBooks[mid] == null) {
+                mid++;
+            }
+            if (mid >= l) {
+                return f;
+            }
+        }
         swap(arrayOfBooks, f, mid);
 
         Book pivot = arrayOfBooks[f];
         f++;
 
+        if (pivot == null) {
+            return f;
+        }
         while (f < l) {
+            if (arrayOfBooks[f] == null) {
+                f++;
+                continue;
+            }
+            if (arrayOfBooks[l] == null) {
+                l--;
+                continue;
+            }
             switch (sortBy) {
                 case 1:
                     while (arrayOfBooks[f].getAuthor().compareTo(pivot.getAuthor()) <= 0 && f < l) {
@@ -371,64 +404,71 @@ class MyUtils {
         arrayOfBooks[y] = temp;
     }
 
-    
     public static void mergeSort(Book[] arrayOfBooks, int sortBy) {
         mSort(arrayOfBooks, 0, arrayOfBooks.length - 1, sortBy);
     }
 
-    public static void mSort(Book[] arrayOfBooks, int f, int l, int sortBy){
-        if (f >= l) return;
-        int mid = (f+l)/2;
+    public static void mSort(Book[] arrayOfBooks, int f, int l, int sortBy) {
+        if (f >= l) {
+            return;
+        }
+        int mid = (f + l) / 2;
         mSort(arrayOfBooks, f, mid, sortBy);
         mSort(arrayOfBooks, mid + 1, l, sortBy);
         merge(arrayOfBooks, f, l, mid, sortBy);
     }
-    
-    public static void merge(Book[] arrayOfBooks, int f, int l, int mid, int sortBy){
-        
-        int n = l-f+1;
-        
+
+    public static void merge(Book[] arrayOfBooks, int f, int l, int mid, int sortBy) {
+
+        int n = l - f + 1;
+
         Book[] b = new Book[n];
-        
-        int i1 = f, i2= mid + 1;
+
+        int i1 = f, i2 = mid + 1;
         int j = 0;
-        
-        while(i1 <= mid && i2 <= l){
-            if(arrayOfBooks[i1] == null){i1++; continue;}
-            if(arrayOfBooks[i2] == null){i2++; continue;}
-            switch(sortBy){
+
+        while (i1 <= mid && i2 <= l) {
+            if (arrayOfBooks[i1] == null) {
+                i1++;
+                continue;
+            }
+            if (arrayOfBooks[i2] == null) {
+                i2++;
+                continue;
+            }
+            switch (sortBy) {
                 case 1:
-                    if(arrayOfBooks[i1].getAuthor().compareTo(arrayOfBooks[i2].getAuthor()) <= 0){
+                    if (arrayOfBooks[i1].getAuthor().compareTo(arrayOfBooks[i2].getAuthor()) <= 0) {
                         b[j] = arrayOfBooks[i1];
                         i1++;
-                    }else{
+                    } else {
                         b[j] = arrayOfBooks[i2];
                         i2++;
                     }
                     break;
                 case 2:
-                    if(arrayOfBooks[i1].getISBN().compareTo(arrayOfBooks[i2].getISBN()) <= 0){
+                    if (arrayOfBooks[i1].getISBN().compareTo(arrayOfBooks[i2].getISBN()) <= 0) {
                         b[j] = arrayOfBooks[i1];
                         i1++;
-                    }else{
+                    } else {
                         b[j] = arrayOfBooks[i2];
                         i2++;
                     }
                     break;
                 case 3:
-                    if(arrayOfBooks[i1].getYearPublished() <= arrayOfBooks[i2].getYearPublished()){
+                    if (arrayOfBooks[i1].getYearPublished() <= arrayOfBooks[i2].getYearPublished()) {
                         b[j] = arrayOfBooks[i1];
                         i1++;
-                    }else{
+                    } else {
                         b[j] = arrayOfBooks[i2];
                         i2++;
                     }
                     break;
                 case 4:
-                    if(arrayOfBooks[i1].getPrice() <= arrayOfBooks[i2].getPrice()){
+                    if (arrayOfBooks[i1].getPrice() <= arrayOfBooks[i2].getPrice()) {
                         b[j] = arrayOfBooks[i1];
                         i1++;
-                    }else{
+                    } else {
                         b[j] = arrayOfBooks[i2];
                         i2++;
                     }
@@ -436,20 +476,20 @@ class MyUtils {
             }
             j++;
         }
-        
-        while(i1 <= mid){
+
+        while (i1 <= mid) {
             b[j] = arrayOfBooks[i1];
             i1++;
             j++;
         }
-        
-        while(i2 <= l){
+
+        while (i2 <= l) {
             b[j] = arrayOfBooks[i2];
             i2++;
             j++;
         }
-        
-        for(j = 0; j< n; j++){
+
+        for (j = 0; j < n; j++) {
             arrayOfBooks[f + j] = b[j];
         }
     }
