@@ -30,7 +30,7 @@
     </build>
     <modelVersion>4.0.0</modelVersion>
     <groupId>com.mycompany</groupId>
-    <artifactId>OOP_assign3</artifactId>
+    <artifactId>OOP_assign4</artifactId>
     <version>1.0</version>
     <packaging>jar</packaging>
     <properties>
