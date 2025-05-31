@@ -96,9 +96,21 @@ public class OOP_assign4 {
                         }
 
                         for (;;) {
+                            while(true){
                             ISBNCheck = UserInput.getString();
                             if (ISBNCheck.equals("0")) {
                                 break;
+                            }
+                            
+                            try{
+                            if(!Book.correctISBN(ISBNCheck,year)){
+                                    throw new WrongISBNException("Lathos eisagogi ISBN");
+                            }
+                            break;
+                            }catch(WrongISBNException e){
+                                    System.out.println(e.getMessage());
+                                    System.out.println("Προσπαθήστε ξανά να εισάγετε την ISBN");
+                                }
                             }
                             if (Book.correctISBN(ISBNCheck, year)) {
                                 String title = UserInput.getString();

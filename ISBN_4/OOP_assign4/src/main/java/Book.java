@@ -101,7 +101,7 @@ public class Book {
             if (sum % 11 == 0) {
                 return true;
             } else {
-                System.out.println("Λάθος τιμή ISBN προσπαθήστε ξανά");
+//                System.out.println("Λάθος τιμή ISBN προσπαθήστε ξανά");
                 return false;
             }
 
@@ -117,11 +117,11 @@ public class Book {
             if (sum % 10 == 0) {
                 return true;
             } else {
-                System.out.println("Λάθος τιμή ISBN προσπαθήστε ξανά");
+//                System.out.println("Λάθος τιμή ISBN προσπαθήστε ξανά");
                 return false;
             }
         } else {
-            System.out.println("Μη έγκυρο μέγεθος ISBN\nΠρέπει να είναι είτε 10 είτε 13 ψηφία ανάλογα με το έτος έκδοσης");
+//            System.out.println("Μη έγκυρο μέγεθος ISBN\nΠρέπει να είναι είτε 10 είτε 13 ψηφία ανάλογα με το έτος έκδοσης");
         }
         return false;
     }
