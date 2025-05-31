@@ -17,6 +17,9 @@ public class OOP_assign4 {
         int salesChoice = 0;
         int index = 0;
         int tempYear;
+        int year = 0;
+        double price = 0;
+        int numEntries = 0;
         boolean isSorted = false;
         String tempISBN;
 
@@ -67,16 +70,18 @@ public class OOP_assign4 {
             switch (mainChoice) {
                 case 1:
                     do {
+
                         System.out.println("Τι είδος βιβλίου εισάγετε: \n"
                                 + "1. Επιστημονικό βιβλίο\n"
                                 + "2. Λεξικό");
                         booktypeChoice = UserInput.getInteger();
+
                     } while (booktypeChoice != 1 && booktypeChoice != 2);
 
                     if (index < 10) {
                         String ISBNCheck;
 
-                        System.out.println("Εισάγετε τα δεδομένα: (Έτος έκδοσης) (ISBN) (Τίτλος βιβλίου) (Ονοματεπώνυμο συγγραφέα)"
+                        System.out.println("Εισάγετε τα δεδομένα για το βιβλίο: (Έτος έκδοσης) (ISBN) (Τίτλος βιβλίου) (Ονοματεπώνυμο συγγραφέα)"
                                 + " (Εκδοτικός οίκος) (Αριθμός σελίδων) (Τιμή) ");
 //                        String extraField = UserInput.getString();
 //                        int extraFieldDictionary = 0;
@@ -86,52 +91,75 @@ public class OOP_assign4 {
 //                        } catch (Exception e) {
 //                            booktypeChoice = 1;
 //                        }
-                        int year = UserInput.getInteger();
 
-                        if (year < 1000 || year > 9999) {
-                            do {
-                                System.out.println("Μη έγκυρος αριθμός Έτους Έκδοσης\nΠρέπει να είναι τετραψήφιος ακέραιος");
+                        do {
+                            try {
+                                System.out.println("Εισάγετε έτος έκδοσης: ");
                                 year = UserInput.getInteger();
-                            } while (year < 1000 || year > 9999);
-                        }
+                                if (year < 1500 || year > 2200) {
+                                    throw new IllegalArgumentException("Μη έγκυρος αριθμός Έτους Έκδοσης\nΠρέπει να είναι τετραψήφιος ακέραιος και απο 1500 μέχρι 2200");
+                                }
+                            } catch (IllegalArgumentException e) {
+                                System.out.println(e.getMessage());
+                                year = -1;
+                            }
+                        } while (year < 1500 || year > 2200);
 
                         for (;;) {
-                            while(true){
-                            ISBNCheck = UserInput.getString();
-                            if (ISBNCheck.equals("0")) {
-                                break;
-                            }
-                            
-                            try{
-                            if(!Book.correctISBN(ISBNCheck,year)){
-                                    throw new WrongISBNException("Lathos eisagogi ISBN");
-                            }
-                            break;
-                            }catch(WrongISBNException e){
+                            while (true) {
+                                ISBNCheck = UserInput.getString();
+                                if (ISBNCheck.equals("0")) {
+                                    break;
+                                }
+
+                                try {
+                                    if (!Book.correctISBN(ISBNCheck, year)) {
+                                        throw new WrongISBNException("Lathos eisagogi ISBN");
+                                    }
+                                    break;
+                                } catch (WrongISBNException e) {
                                     System.out.println(e.getMessage());
                                     System.out.println("Προσπαθήστε ξανά να εισάγετε την ISBN");
                                 }
                             }
                             if (Book.correctISBN(ISBNCheck, year)) {
+
                                 String title = UserInput.getString();
                                 String author = UserInput.getString();
                                 String publisher = UserInput.getString();
                                 int numberOfPages = UserInput.getInteger();
-                                double price = UserInput.getDouble();
+                                do {
+                                    try {
+                                        System.out.println("Εισάγετε την τιμή βιβλίου: ");
+                                        price = UserInput.getDouble();
+                                        if (price < 0 || price > 1000) {
+                                            throw new IllegalArgumentException("Λάθος εισαγωγή τιμής του βιβλίου πρέπει να είναι από 0 μέχρι 1000");
+                                        }
+                                    } catch (IllegalArgumentException e) {
+                                        System.out.println(e.getMessage());
+                                        price = -1;
+                                    }
+                                } while (price < 0 || price > 1000);
+
                                 if (booktypeChoice == 1) {
                                     System.out.println("Εισάγετε επιστημονική περιοχή: ");
                                     String scientificField = UserInput.getString();
                                     arrayOfBooks[index] = new Science(title, author, ISBNCheck, publisher, numberOfPages, year, price, scientificField);
 
                                 } else if (booktypeChoice == 2) {
-                                    System.out.println("Εισάγετε αριθμό λημμάτων: ");
-                                    int numEntries;
+
                                     do {
-                                        numEntries = UserInput.getInteger();
-                                        if (numEntries <= 0) {
-                                            System.out.println("Μη έγκυρος αριθμός λημμάτων\nΠρέπει να είναι θετικός ακέραιος");
+                                        try {
+                                            System.out.println("Εισάγετε αριθμό λημμάτων: ");
+                                            numEntries = UserInput.getInteger();
+                                            if (numEntries < 1000 || numEntries > 100000) {
+                                                throw new IllegalArgumentException("Μη έγκυρος αριθμός λημμάτων\nΠρέπει να είναι από 1000 εώς 100000");
+                                            }
+                                        } catch (IllegalArgumentException e) {
+                                            System.out.println(e.getMessage());
+                                            numEntries = -1;
                                         }
-                                    } while (numEntries <= 0);
+                                    } while ( numEntries < 1000 || numEntries > 100000);
                                     arrayOfBooks[index] = new Dictionary(title, author, ISBNCheck, publisher, numberOfPages, year, price, numEntries);
                                 }
                                 index++;
