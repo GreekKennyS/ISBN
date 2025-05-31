@@ -1,7 +1,7 @@
-public class Science extends Book{
+public class Science extends Book implements ProsPolisi{
 
     private String scientificField;
-
+    private int numberOfCopies;
     
     public Science() {
     }
@@ -10,7 +10,19 @@ public class Science extends Book{
         super(title, author, ISBN, publisher, numberPages, yearPublished, price);
         this.scientificField = scientificField;
     }
-
+    
+    public int getNumberOfCopies(){
+        return numberOfCopies;
+    }
+    
+    public void setNumberOfCopies(int copies){
+        if(copies >= 0){
+        this.numberOfCopies = copies;
+        }else{
+            throw new IllegalArgumentException("Το νούμερο δεν μπορεί να είναι αρνητικό");
+        }
+    }
+    
     public void setScientificField(String scientificField) {
         this.scientificField = scientificField;
     }

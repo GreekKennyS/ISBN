@@ -1,7 +1,8 @@
-public class Dictionary extends Book {
+public class Dictionary extends Book implements ProsPolisi {
 
     private int numEntries;
-
+    private int copies;
+    
     public Dictionary() {
     }
 
@@ -10,6 +11,14 @@ public class Dictionary extends Book {
         this.numEntries = numEntries;
     }
 
+    public int getNumberOfCopies(){
+        return copies;
+    }
+    
+    public void setNumberOfCopies(int copies){
+        this.copies = copies;
+    }
+    
     public void setNumEntries(int numEntries) {
         if (numEntries > 0) {
             this.numEntries = numEntries;
