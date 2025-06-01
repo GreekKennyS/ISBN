@@ -17,7 +17,16 @@ public class Dictionary extends Book implements ProsPolisi {
     }
 
     public void setNumberOfCopies(int copies) {
-        this.copies = copies;
+        try {
+            if (copies < 0) {
+                throw new IllegalArgumentException("Μη έγκυρος αριθμός αντιτύπων πρέπει να είναι θετικός");
+            }
+            this.copies = copies;
+
+        } catch (IllegalArgumentException e) {
+            System.out.println(e.getMessage());
+        }
+
     }
 
     public void setNumEntries(int numEntries) {
