@@ -1,8 +1,9 @@
+
 public class Dictionary extends Book implements ProsPolisi {
 
     private int numEntries;
     private int copies;
-    
+
     public Dictionary() {
     }
 
@@ -11,19 +12,23 @@ public class Dictionary extends Book implements ProsPolisi {
         this.numEntries = numEntries;
     }
 
-    public int getNumberOfCopies(){
+    public int getNumberOfCopies() {
         return copies;
     }
-    
-    public void setNumberOfCopies(int copies){
+
+    public void setNumberOfCopies(int copies) {
         this.copies = copies;
     }
-    
+
     public void setNumEntries(int numEntries) {
-        if (numEntries > 0) {
+        try {
+            if (numEntries < 1000 || numEntries > 100000) {
+                throw new IllegalArgumentException("Μη έγκυρος αριθμός λημμάτων\nΠρέπει να είναι από 1000 εώς 100000");
+            }
             this.numEntries = numEntries;
-        } else {
-            System.out.println("Ο αριθμός λημμάτων πρέπει να είναι θετικός ακέραιος");
+
+        } catch (IllegalArgumentException e) {
+            System.out.println(e.getMessage());
         }
     }
 

@@ -1,5 +1,4 @@
 
-
 public class Book {
 
     private String title;
@@ -72,15 +71,27 @@ public class Book {
     }
 
     public void setYearPublished(int yearPublished) {
-        if (yearPublished > 999 && yearPublished < 1000) {
+
+        try {
+            if (yearPublished > 2200 || yearPublished < 1500) {
+                throw new IllegalArgumentException("Μη έγκυρος αριθμός Έτους Έκδοσης\nΠρέπει να είναι τετραψήφιος ακέραιος και απο 1500 μέχρι 2200");
+            }
             this.yearPublished = yearPublished;
-        } else {
-            System.out.println("Μη έγκυρος αριθμός Έτους Έκδοσης\nΠρέπει να είναι τετραψήφιος ακέραιος");
+        } catch (IllegalArgumentException e) {
+            System.out.println(e.getMessage());
         }
     }
 
     public void setPrice(double price) {
-        this.price = price;
+        try {
+            if (price < 0 || price > 1000) {
+                throw new IllegalArgumentException("Λάθος εισαγωγή τιμής του βιβλίου πρέπει να είναι από 0 μέχρι 1000");
+            }
+            this.price = price;
+
+        } catch (IllegalArgumentException e) {
+            System.out.println(e.getMessage());
+        }
     }
 
     @Override
@@ -106,7 +117,7 @@ public class Book {
             }
 
         } else if (ISBN.length() == 13 && year > 2006) {
-            
+
             for (int i = 0; i < 13; i += 2) {
                 sum += ISBN.charAt(i);
             }
