@@ -20,6 +20,7 @@ public class OOP_assign4 {
         int year = 0;
         double price = 0;
         int numEntries = 0;
+        int copiesTemp = 0;
         boolean isSorted = false;
         String tempISBN;
 
@@ -73,10 +74,11 @@ public class OOP_assign4 {
 
                         System.out.println("Τι είδος βιβλίου εισάγετε: \n"
                                 + "1. Επιστημονικό βιβλίο\n"
-                                + "2. Λεξικό");
+                                + "2. Λεξικό\n"
+                                + "3. Βιβλίο μόνο για ανάγνωση");
                         booktypeChoice = UserInput.getInteger();
 
-                    } while (booktypeChoice != 1 && booktypeChoice != 2);
+                    } while (booktypeChoice != 1 && booktypeChoice != 2 && booktypeChoice != 3);
 
                     if (index < 10) {
                         String ISBNCheck;
@@ -142,10 +144,23 @@ public class OOP_assign4 {
                                 } while (price < 0 || price > 1000);
 
                                 if (booktypeChoice == 1) {
+
+
                                     System.out.println("Εισάγετε επιστημονική περιοχή: ");
                                     String scientificField = UserInput.getString();
                                     arrayOfBooks[index] = new Science(title, author, ISBNCheck, publisher, numberOfPages, year, price, scientificField);
-
+                                    do{
+                                        System.out.println("Δώστε αριθμό αντιτύπων που είναι διαθέσιμα: ");
+                                        copiesTemp = UserInput.getInteger();
+                                        try{
+                                            if(copiesTemp < 0){
+                                                throw new IllegalArgumentException("Πρέπει να είναι θετικός αριθμός αντιτύπων");
+                                            }
+                                            ((Science)arrayOfBooks[index]).setNumberOfCopies(copiesTemp);
+                                        }catch(IllegalArgumentException e){
+                                            System.out.println(e.getMessage());
+                                        }
+                                    }while(copiesTemp < 0);
                                 } else if (booktypeChoice == 2) {
 
                                     do {
@@ -161,6 +176,22 @@ public class OOP_assign4 {
                                         }
                                     } while ( numEntries < 1000 || numEntries > 100000);
                                     arrayOfBooks[index] = new Dictionary(title, author, ISBNCheck, publisher, numberOfPages, year, price, numEntries);
+                                        do{
+                                        System.out.println("Δώστε αριθμό αντιτύπων που είναι διαθέσιμα: ");
+                                        copiesTemp = UserInput.getInteger();
+                                        try{
+                                            if(copiesTemp < 0){
+                                                throw new IllegalArgumentException("Πρέπει να είναι θετικός αριθμός αντιτύπων");
+                                            }
+                                            ((Dictionary)arrayOfBooks[index]).setNumberOfCopies(copiesTemp);
+                                        }catch(IllegalArgumentException e){
+                                            System.out.println(e.getMessage());
+                                        }
+                                    }while(copiesTemp < 0);
+                                }
+                                else if(booktypeChoice == 3){
+                                    arrayOfBooks[index] = new ReadBook(title, author, ISBNCheck, publisher, numberOfPages, year, price);
+                                    
                                 }
                                 index++;
                                 isSorted = false;

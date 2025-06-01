@@ -17,8 +17,24 @@ public class DaySales {
         }
         for(int i = 0; i <books.length; i++){
             if(books[i] != null && books[i].getISBN().equals(ISBN)){
+                if(books[i] instanceof ProsPolisi){
+                    ProsPolisi sellableBook = (ProsPolisi) books[i];
+                    int availableCopies = sellableBook.getNumberOfCopies();
+                    try{
+                    if(quantity > availableCopies){
+                        throw new IllegalArgumentException("Δεν υπάρχουν αρκετά διαθέσιμα βιβλία για πώληση");
+                    }
+                    }catch(IllegalArgumentException e){
+                        System.out.println(e.getMessage());
+                        return;
+                    }
+                
                 sales[i] += quantity;
+                sellableBook.setNumberOfCopies(availableCopies - quantity);
                 return;
+                }else{
+                    System.out.println("Το βιβλίο δεν είναι πρως πωληση μόνο για ανάγνωση");
+                }
             }
         }
         System.out.println("Το βιβλίο με "+ISBN+" δεν βρέθηκε");
@@ -27,7 +43,7 @@ public class DaySales {
     public void calculateTotalSales(){
         double scienceTotal = 0,dictionaryTotal = 0;
         for(int i = 0; i < books.length; i++){
-            if(books[i] != null){
+            if(books[i] != null && books[i] instanceof ProsPolisi){
                 if(books[i] instanceof Science){
                     scienceTotal += books[i].getPrice() * sales[i];
                 }else if (books[i] instanceof Dictionary){
