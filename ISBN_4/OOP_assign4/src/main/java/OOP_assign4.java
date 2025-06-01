@@ -431,6 +431,7 @@ public class OOP_assign4 {
                                 String sellISBN = UserInput.getString();
                                 System.out.println("Εισάγετε ποσότητα: ");
                                 int quantity = UserInput.getInteger();
+                                
                                 daySales.sellBook(sellISBN, quantity);
                                 break;
                             case 2:
